@@ -27,9 +27,6 @@ class boss_enigme(boss):
         self.question=question
         self.reponse=reponse
 
-    def __del__(self):
-        pass
-
     def ask_question(self):
         return self.question
 
@@ -38,3 +35,16 @@ class boss_enigme(boss):
             return True
         else:
             return False
+
+class boss_combatant(boss):
+
+    def __init__(self,force,velocite):
+        boss.__init__(self)
+        self.force=force
+        self.velocite=velocite
+
+    def collision(self,joueur):
+        pass
+
+    def check_health(self,damage):
+        pass
