@@ -26,4 +26,4 @@ class player:
     def move_down(self):
         self.rect.y-=self.velocity
 
-    #commit and push
+    #commit and push 2
