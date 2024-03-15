@@ -1,8 +1,9 @@
 import pygame
 import boss
 
-class player:
+class player(pygame.sprite.Sprite):
     def __init__(self,pseudo):
+        super().__init__()
         self.pseudo=pseudo
         self.vie=60
         self.force=10
