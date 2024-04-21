@@ -535,7 +535,5 @@ display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
 
 # Maintenant, mots est une liste contenant tous les mots dans la chaîne. On prend le premier.
 # premier_mot = mots[0]
-
-
 pygame.quit()
 sys.exit()
