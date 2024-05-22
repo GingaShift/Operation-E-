@@ -5,7 +5,7 @@ import sys
 pygame.init()
 
 # Configuration de la fenêtre
-screen_width, screen_height = 800, 600
+screen_width, screen_height = 1200, 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Quiz Environnemental')
 
