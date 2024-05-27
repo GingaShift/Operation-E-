@@ -74,13 +74,11 @@ questions = [
 score = 0
 current_question = 0
 
-
 # Fonction pour dessiner du texte au centre de l'écran
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, True, color)
     textrect = textobj.get_rect(center=(x, y))
     surface.blit(textobj, textrect)
-
 
 # Fonction principale du quiz
 def quiz():
@@ -124,16 +122,21 @@ def quiz():
 
         pygame.display.flip()
 
-
 # Fonction pour afficher le score final
 def show_score():
+    global score, current_question
     running = True
     while running:
         screen.fill(WHITE)
 
-        draw_text(f'Votre score : {score} / {len(questions)}', font, BLACK, screen, screen_width // 2,
-                  screen_height // 2)
-        draw_text('Cliquez pour recommencer', font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
+        # Message de score
+        if score >= 8:
+            message = f'Félicitations! Vous avez passé le niveau avec un score de {score} / {len(questions)}'
+        else:
+            message = f'Votre score : {score} / {len(questions)}. Vous devez refaire le niveau.'
+
+        draw_text(message, font, BLACK, screen, screen_width // 2, screen_height // 2 - 50)
+        draw_text('Cliquez pour retourner au menu principal', font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -144,9 +147,26 @@ def show_score():
 
         pygame.display.flip()
 
+# Fonction pour afficher le menu principal
+def main_menu():
+    running = True
+    while running:
+        screen.fill(WHITE)
+        draw_text('Quiz Environnemental', font, BLACK, screen, screen_width // 2, screen_height // 2 - 50)
+        draw_text('Cliquez pour commencer le quiz', font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                running = False
+
+        pygame.display.flip()
 
 # Boucle principale
 while True:
+    main_menu()
     quiz()
     show_score()
     score = 0

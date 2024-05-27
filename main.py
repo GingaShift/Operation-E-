@@ -276,12 +276,12 @@ def display_image(image_file, title_text,):
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (500,200)
 
-    level_2_font = pygame.image.load("level_2.png").convert_alpha()
+    level_2_font = pygame.image.load("voiture_mechante.png").convert_alpha()
     level_2_font = pygame.transform.scale(level_2_font, (200, 200))
     level_2_font_rect = level_2_font.get_rect()
     level_2_font_rect.center = (700, 500)
 
-    level_3_font = pygame.image.load("level_3.png").convert_alpha()
+    level_3_font = pygame.image.load("piggy_boss.png").convert_alpha()
     level_3_font = pygame.transform.scale(level_3_font, (200, 200))
     level_3_font_rect = level_3_font.get_rect()
     level_3_font_rect.center = (800, 300)
@@ -423,7 +423,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            import level_2
+            import voiture_mechante
             level_2.main()
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond

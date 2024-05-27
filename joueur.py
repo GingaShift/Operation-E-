@@ -7,7 +7,7 @@ class player(pygame.sprite.Sprite):
         self.pseudo=pseudo
         self.vie=60
         self.force=10
-        self.image=pygame.image.load("pictures/download.jpg")
+        self.image=pygame.image.load("download.jpg")
         self.rect=self.image.get_rect()
         self.rect.x=20
         self.rect.y=20
