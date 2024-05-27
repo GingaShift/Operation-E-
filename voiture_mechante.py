@@ -1,7 +1,15 @@
 import pygame
 import sys
+from moviepy.editor import VideoFileClip
 
+def play_video(video_path):
+    try:
+        clip = VideoFileClip(video_path)
+        clip.preview()
+    except Exception as e:
+        print(f"Error playing video {video_path}: {e}")
 # Initialisation de pygame
+play_video("voiture_mechante_video.mp4")
 pygame.init()
 
 # Configuration de la fenêtre en plein écran
