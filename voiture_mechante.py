@@ -4,9 +4,9 @@ import sys
 # Initialisation de pygame
 pygame.init()
 
-# Configuration de la fenêtre
-screen_width, screen_height = 1200, 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+# Configuration de la fenêtre en plein écran
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+screen_width, screen_height = screen.get_size()
 pygame.display.set_caption('Quiz Environnemental')
 
 # Couleurs
@@ -16,8 +16,18 @@ LIGHT_GRAY = (200, 200, 200)
 DARK_GRAY = (50, 50, 50)
 HIGHLIGHT_COLOR = (170, 170, 170)
 
-# Police
-font = pygame.font.Font(None, 36)
+# Polices
+font_name = "Comic Sans MS"
+question_font_size = 30
+answer_font_size = 24
+message_font_size = 36
+question_font = pygame.font.SysFont(font_name, question_font_size)
+answer_font = pygame.font.SysFont(font_name, answer_font_size)
+message_font = pygame.font.SysFont(font_name, message_font_size)
+
+# Charger et redimensionner l'image de fond
+background_image = pygame.image.load('background_v_m.jpeg').convert()
+background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
 # Questions et réponses
 questions = [
@@ -75,23 +85,44 @@ score = 0
 current_question = 0
 
 # Fonction pour dessiner du texte au centre de l'écran
-def draw_text(text, font, color, surface, x, y):
-    textobj = font.render(text, True, color)
-    textrect = textobj.get_rect(center=(x, y))
-    surface.blit(textobj, textrect)
+def draw_text(text, font, color, surface, x, y, max_width=None):
+    words = text.split(' ')
+    lines = []
+    current_line = []
+
+    # Définition de la largeur maximale par défaut si aucune n'est fournie
+    if max_width is None:
+        max_width = surface.get_width()
+
+    for word in words:
+        test_line = ' '.join(current_line + [word])
+        if font.size(test_line)[0] <= max_width:
+            current_line.append(word)
+        else:
+            lines.append(' '.join(current_line))
+            current_line = [word]
+
+    lines.append(' '.join(current_line))
+
+    y_offset = 0
+    for line in lines:
+        text_surface = font.render(line, True, color)
+        text_rect = text_surface.get_rect(center=(x, y + y_offset))
+        surface.blit(text_surface, text_rect)
+        y_offset += font.get_linesize()
 
 # Fonction principale du quiz
 def quiz():
     global score, current_question
     running = True
     while running:
-        screen.fill(WHITE)
+        screen.blit(background_image, (0, 0))
 
         # Récupération de la question et des réponses actuelles
         question, answers = questions[current_question]
 
         # Affichage de la question
-        draw_text(question, font, BLACK, screen, screen_width // 2, 100)
+        draw_text(question, question_font, BLACK, screen, screen_width // 2, 100, max_width=screen_width - 100)
 
         # Gestion des événements
         mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -111,14 +142,16 @@ def quiz():
 
         # Affichage des réponses sous forme de boutons
         button_rects = []
+        button_width = screen_width // 2
+        button_height = 60
         for i, (answer, is_correct) in enumerate(answers):
-            button_rect = pygame.Rect(screen_width // 4, 200 + i * 60, screen_width // 2, 50)
+            button_rect = pygame.Rect(screen_width // 4, 200 + i * (button_height + 20), button_width, button_height)
             button_rects.append(button_rect)
             if button_rect.collidepoint(mouse_x, mouse_y):
                 pygame.draw.rect(screen, HIGHLIGHT_COLOR, button_rect)
             else:
                 pygame.draw.rect(screen, LIGHT_GRAY, button_rect)
-            draw_text(answer, font, BLACK, screen, screen_width // 2, 225 + i * 60)
+            draw_text(answer, answer_font, BLACK, screen, screen_width // 2, 200 + i * (button_height + 20) + button_height // 2)
 
         pygame.display.flip()
 
@@ -127,7 +160,7 @@ def show_score():
     global score, current_question
     running = True
     while running:
-        screen.fill(WHITE)
+        screen.blit(background_image, (0, 0))
 
         # Message de score
         if score >= 8:
@@ -135,8 +168,8 @@ def show_score():
         else:
             message = f'Votre score : {score} / {len(questions)}. Vous devez refaire le niveau.'
 
-        draw_text(message, font, BLACK, screen, screen_width // 2, screen_height // 2 - 50)
-        draw_text('Cliquez pour retourner au menu principal', font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
+        draw_text(message, message_font, BLACK, screen, screen_width // 2, screen_height // 2 - 50, max_width=screen_width - 100)
+        draw_text('Cliquez pour retourner au menu principal', message_font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -151,9 +184,9 @@ def show_score():
 def main_menu():
     running = True
     while running:
-        screen.fill(WHITE)
-        draw_text('Quiz Environnemental', font, BLACK, screen, screen_width // 2, screen_height // 2 - 50)
-        draw_text('Cliquez pour commencer le quiz', font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 50)
+        screen.blit(background_image, (0, 0))
+        draw_text('Quiz Environnemental', message_font, BLACK, screen, screen_width // 2, screen_height // 2 - 100, max_width=screen_width - 100)
+        draw_text('Cliquez pour commencer le quiz', message_font, DARK_GRAY, screen, screen_width // 2, screen_height // 2 + 100)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
