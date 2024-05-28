@@ -12,7 +12,7 @@ screen = pygame.display.set_mode((1080,720))
 
 background = pygame.image.load('picture/bg.jpg')
 
-game = game.Game()
+game = game_niveau_poubelle.Game()
 
 running = True
 

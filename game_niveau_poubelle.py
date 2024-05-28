@@ -1,5 +1,5 @@
 import pygame
-import player_niveau_poubelle
+import player_niveau_poubelle as player
 import dechet
 import dechetj
 import dechetv

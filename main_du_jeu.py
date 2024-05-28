@@ -226,7 +226,11 @@ def display_image(image_file, title_text,):
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
     os.environ['SDL_VIDEO_CENTERED'] = '1'
+    level_1_bool = False
     level_2_bool = False
+    level_3_bool = False
+    level_4_bool = False
+    level_5_bool = False
 
 
     # Chargement de l'image pour le bouton "info"
@@ -281,7 +285,7 @@ def display_image(image_file, title_text,):
     level_2_font_rect = level_2_font.get_rect()
     level_2_font_rect.center = (700, 500)
 
-    level_3_font = pygame.image.load("piggy_boss.png").convert_alpha()
+    level_3_font = pygame.image.load("level_3.png").convert_alpha()
     level_3_font = pygame.transform.scale(level_3_font, (200, 200))
     level_3_font_rect = level_3_font.get_rect()
     level_3_font_rect.center = (800, 300)
@@ -419,12 +423,31 @@ def display_image(image_file, title_text,):
                 if level_2_font_rect.collidepoint(event.pos):
                     level_2_bool = True
 
+                if level_1_font_rect.collidepoint(event.pos):
+                    level_1_bool = True
+
+                if level_3_font_rect.collidepoint(event.pos):
+                    level_3_bool = True
+
+        if level_1_bool :
+            level_2_selected = False
+            print("Level 1 selected")
+            import main_niveau_poubelle
+            main_niveau_poubelle.main()
+
         if level_2_bool :
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
             import voiture_mechante
             level_2.main()
+
+        if level_3_bool :
+            level_2_selected = False
+            print("Level 3 selected")
+            # Importer et exécuter le script du niveau 2
+            import piggy_boss
+            piggy_boss.main()
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
         if not game_playing :
