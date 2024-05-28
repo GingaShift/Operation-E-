@@ -3,16 +3,16 @@ import game
 pygame.init()
 
 
+def starting_secondhand():
+    pygame.display.set_caption("Seconde main")
+    screen = pygame.display.set_mode((1080,720))
 
-pygame.display.set_caption("Seconde main")
-screen = pygame.display.set_mode((1080,720))
+    background = pygame.image.load('pictures/bg.jpg')
 
-background = pygame.image.load('pictures/bg.jpg')
+    game=game.Game()
 
-game=game.Game()
+    running=True
 
-running=True
-def starting_benwars():
     while running and game.gamer.health>0 and game.gamer.score < 500:
 
         screen.blit(background, (0,-200))
