@@ -41,8 +41,7 @@ start_font = pygame.font.SysFont(font_name, start_font_size, bold=True)
 
 
 # Charger et redimensionner l'image de fond
-background_image = pygame.image.load('background_v_m.jpeg').convert()
-background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
+
 
 # Questions et réponses
 questions = [
