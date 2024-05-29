@@ -6,7 +6,7 @@ import dechetj
 import dechetv
 
 pygame.init()
-def start_secondhand():
+def start_benwars():
     #generer la fenetre de notre jeu
     pygame.display.set_caption('Ordure')
     screen = pygame.display.set_mode((1080,720))

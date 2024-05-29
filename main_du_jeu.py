@@ -6,7 +6,7 @@ import pygame_menu as pm
 import main
 import piggy_boss
 import main_niveau_poubelle
-
+import voiture_mechante
 
 user_name = ""
 nom_utilisateur = ""
@@ -354,6 +354,7 @@ def display_image(image_file, title_text,):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 continuer = False
+                pygame.QUIT
             elif event.type == pygame.MOUSEMOTION:
                 if level_1_font_rect.collidepoint(event.pos):
                     button_hover_level_1 = True
@@ -461,28 +462,27 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if main_niveau_poubelle.start_secondhand():
+            if True: #main_niveau_poubelle.start_benwars():
                 winrate+=1
             start_mainjeu()
 
-        if level_2_bool and winrate>0:
+        if level_2_bool and winrate==1:
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if True:
+            if True: #voiture_mechante.voiture_mechante():
                 winrate+=1
             start_mainjeu()
 
-        if level_3_bool  and winrate>1:
+        if level_3_bool  and winrate==2:
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-
-            if piggy_boss.start_piggyboss():
+            if True: #piggy_boss.start_piggyboss():
                 winrate+=1
             start_mainjeu()
 
-        if level_4_bool and winrate>2:
+        if level_4_bool and winrate==3:
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2

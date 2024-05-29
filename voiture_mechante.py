@@ -11,41 +11,9 @@ def play_video(video_path):
         print(f"Error playing video {video_path}: {e}")
 
 # Initialisation de pygame
-play_video("voiture_mechante_video.mp4")
+
 pygame.init()
 
-# Configuration de la fenêtre en plein écran
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-screen_width, screen_height = screen.get_size()
-pygame.display.set_caption('Quiz de la Voiture Méchante (HAHA !!)')
-
-background_image = pygame.image.load('background_v_m.jpeg').convert()
-background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
-
-# Couleurs
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-LIGHT_GRAY = (200, 200, 200)
-DARK_GRAY = (50, 50, 50)
-HIGHLIGHT_COLOR = (170, 170, 170)
-RED = (255, 0, 0)
-RED_BG = (255, 100, 100)  # Couleur de fond rouge pour la réponse incorrecte
-GREEN = (0, 255, 0)
-GREEN_BG = (100, 255, 100)  # Couleur de fond verte pour la réponse correcte
-
-# Polices
-font_name = "Comic Sans MS"
-question_font_size = 30
-question_font = pygame.font.SysFont(font_name, question_font_size, bold=True)
-answer_font_size = 24
-answer_font = pygame.font.SysFont(font_name, answer_font_size)
-message_font_size = 48  # Augmentation de la taille de la police pour le message final
-message_font = pygame.font.SysFont(font_name, message_font_size, bold=True)  # Police plus épaisse
-title_font_size = 60
-title_font = pygame.font.SysFont(font_name, title_font_size, bold=True)
-
-start_font_size = 36
-start_font = pygame.font.SysFont(font_name, start_font_size, bold=True)
 
 # Questions et réponses
 questions = [
@@ -129,7 +97,7 @@ def draw_text(text, font, color, surface, x, y, max_width=None):
         y_offset += font.get_linesize()
 
 # Fonction principale du quiz
-def quiz():
+def quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN):
     global score, current_question
     running = True
 
@@ -200,7 +168,7 @@ def quiz():
         pygame.display.flip()
 
 # Fonction pour afficher le score final
-def show_score():
+def show_score(screen,background_image,message_font,WHITE,screen_width,screen_height):
     global score, current_question
     running = True
     while running:
@@ -226,7 +194,7 @@ def show_score():
         pygame.display.flip()
 
 # Fonction pour afficher le menu principal
-def main_menu():
+def main_menu(screen,background_image,questions,title_font,WHITE,screen_width,screen_height,start_font):
     running = True
 
     while running:
@@ -243,9 +211,46 @@ def main_menu():
 
         pygame.display.flip()
 
-# Boucle principale
-main_menu()
-quiz()
-show_score()
-pygame.quit()
-sys.exit()
+def start_badcars():
+    global questions
+    play_video("voiture_mechante_video.mp4")
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen_width, screen_height = screen.get_size()
+    pygame.display.set_caption('Quiz de la Voiture Méchante (HAHA !!)')
+
+    background_image = pygame.image.load('background_v_m.jpeg').convert()
+    background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
+
+    # Couleurs
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    LIGHT_GRAY = (200, 200, 200)
+    DARK_GRAY = (50, 50, 50)
+    HIGHLIGHT_COLOR = (170, 170, 170)
+    RED = (255, 0, 0)
+    RED_BG = (255, 100, 100)  # Couleur de fond rouge pour la réponse incorrecte
+    GREEN = (0, 255, 0)
+    GREEN_BG = (100, 255, 100)  # Couleur de fond verte pour la réponse correcte
+
+    # Polices
+    font_name = "Comic Sans MS"
+    question_font_size = 30
+    question_font = pygame.font.SysFont(font_name, question_font_size, bold=True)
+    answer_font_size = 24
+    answer_font = pygame.font.SysFont(font_name, answer_font_size)
+    message_font_size = 48  # Augmentation de la taille de la police pour le message final
+    message_font = pygame.font.SysFont(font_name, message_font_size, bold=True)  # Police plus épaisse
+    title_font_size = 60
+    title_font = pygame.font.SysFont(font_name, title_font_size, bold=True)
+
+    start_font_size = 36
+    start_font = pygame.font.SysFont(font_name, start_font_size, bold=True)
+
+    # Boucle principale
+    main_menu(screen,background_image,questions,title_font,WHITE,screen_width,screen_height,start_font)
+    quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN)
+    show_score(screen,background_image,message_font,WHITE,screen_width,screen_height)
+    if score>=7:
+        return True
+    else:
+        return False
