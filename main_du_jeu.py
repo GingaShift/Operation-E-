@@ -10,7 +10,11 @@ import voiture_mechante
 
 user_name = ""
 nom_utilisateur = ""
-
+l1=False
+l2=False
+l3=False
+l4=False
+l5=False
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -289,12 +293,12 @@ def display_image(image_file, title_text,):
     level_1_font_rect.center = (500,200)
 
     if winrate>0:
-        level_2_font = pygame.image.load("voiture_mechante.png").convert_alpha()
+        level_2_font = pygame.image.load("level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
         level_2_font_rect = level_2_font.get_rect()
         level_2_font_rect.center = (700, 500)
     else:
-        level_2_font = pygame.image.load("level_2_-removebg-preview.png").convert_alpha()
+        level_2_font = pygame.image.load("level_2_lock.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
         level_2_font_rect = level_2_font.get_rect()
         level_2_font_rect.center = (700, 500)
@@ -462,24 +466,27 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if True: #main_niveau_poubelle.start_benwars():
+            if main_niveau_poubelle.start_benwars() and not l1:
                 winrate+=1
+                l1=True
             start_mainjeu()
 
         if level_2_bool and winrate==1:
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #voiture_mechante.voiture_mechante():
+            if voiture_mechante.voiture_mechante() and not l2:
                 winrate+=1
+                l2=True
             start_mainjeu()
 
         if level_3_bool  and winrate==2:
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #piggy_boss.start_piggyboss():
+            if piggy_boss.start_piggyboss() and not l3:
                 winrate+=1
+                l3=True
             start_mainjeu()
 
         if level_4_bool and winrate==3:
