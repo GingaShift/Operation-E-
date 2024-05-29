@@ -13,16 +13,17 @@ def start_benwars():
 
     background = pygame.image.load('picture/bg.jpg')
 
+
     game = game_niveau_poubelle.Game()
 
     running = True
 
     while running:
 
-        screen.blit(background,(0,-200))
+        screen.blit(background,(-854,-324))
         screen.blit(game.gamer.image, game.gamer.rect)
         myfont = pygame.font.SysFont("monospace", 62)
-        score_display = myfont.render(str(game.gamer.score), 1, (255, 255, 255))
+        score_display = myfont.render(str(game.gamer.score)+'/10', 1, (255, 255, 255))
         screen.blit(score_display, (0, 0))
 
         game.gamer.update_health_bar(screen)

@@ -97,8 +97,8 @@ def draw_text(text, font, color, surface, x, y, max_width=None):
         y_offset += font.get_linesize()
 
 # Fonction principale du quiz
-def quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN):
-    global score, current_question
+def quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN, current_question):
+    global score
     running = True
 
     image1 = pygame.image.load('heros_final.png').convert_alpha()
@@ -213,6 +213,9 @@ def main_menu(screen,background_image,questions,title_font,WHITE,screen_width,sc
 
 def start_badcars():
     global questions
+    global current_question
+    if current_question!=0:
+        current_question=0
     play_video("voiture_mechante_video.mp4")
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     screen_width, screen_height = screen.get_size()
@@ -248,7 +251,7 @@ def start_badcars():
 
     # Boucle principale
     main_menu(screen,background_image,questions,title_font,WHITE,screen_width,screen_height,start_font)
-    quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN)
+    quiz(screen,background_image,question_font,WHITE,screen_width,LIGHT_GRAY,answer_font, BLACK,HIGHLIGHT_COLOR,RED_BG,RED,GREEN_BG,GREEN,current_question)
     show_score(screen,background_image,message_font,WHITE,screen_width,screen_height)
     if score>=7:
         return True

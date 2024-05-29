@@ -11,6 +11,7 @@ class Gamer(pygame.sprite.Sprite):
         self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load('pictures/player.png')
+        self.image = pygame.transform.scale(self.image,(128,128))
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 500

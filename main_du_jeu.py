@@ -481,7 +481,7 @@ def display_image(image_file, title_text,):
                 l2=True
             start_mainjeu()
 
-        if level_3_bool  and winrate==2:
+        if level_3_bool and winrate==2:
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
