@@ -1,5 +1,5 @@
 import pygame
-import game
+import games
 pygame.init()
 
 

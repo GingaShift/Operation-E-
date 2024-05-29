@@ -1,5 +1,6 @@
 import pygame
 from moviepy.editor import VideoFileClip
+import main_du_jeu
 
 def play_video(video_path):
     try:
@@ -128,34 +129,34 @@ class Quiz:
                 self.current_question += 1
                 self.answered = False
                 self.feedback_text = ""
+def start_piggyboss():
+    quiz = Quiz()
 
-quiz = Quiz()
+    # Jouer la vidéo avant de commencer le jeu
+    play_video("boss.mp4")
 
-# Jouer la vidéo avant de commencer le jeu
-play_video("boss.mp4")
+    run = True
+    while run:
+        screen.fill('white')
+        timer.tick(fps)
+        screen.blit(background_image, (0, 0))
+        screen.blit(new_image, ((WIDTH - new_image.get_width()) // 2 - 30, (HEIGHT - new_image.get_height()) // 2 + 400))
+        screen.blit(boss_image, ((WIDTH - boss_image.get_width()) // 2 + 320, (HEIGHT - boss_image.get_height()) // 2 - 75))
+        screen.blit(hero_image, ((WIDTH - boss_image.get_width()) // 2 - 350, (HEIGHT - hero_image.get_height()) // 2 - 90))
+        quiz.display_question()
 
-run = True
-while run:
-    screen.fill('white')
-    timer.tick(fps)
-    screen.blit(background_image, (0, 0))
-    screen.blit(new_image, ((WIDTH - new_image.get_width()) // 2 - 30, (HEIGHT - new_image.get_height()) // 2 + 400))
-    screen.blit(boss_image, ((WIDTH - boss_image.get_width()) // 2 + 320, (HEIGHT - boss_image.get_height()) // 2 - 75))
-    screen.blit(hero_image, ((WIDTH - boss_image.get_width()) // 2 - 350, (HEIGHT - hero_image.get_height()) // 2 - 90))
-    quiz.display_question()
+        if quiz.feedback_text:
+            feedback_display_time = pygame.time.get_ticks() - quiz.feedback_time
+            if feedback_display_time < 1000:
+                feedback_surface = font.render(quiz.feedback_text, True, 'black')
+                screen.blit(feedback_surface, feedback_text_position)
+            else:
+                quiz.next_question()
 
-    if quiz.feedback_text:
-        feedback_display_time = pygame.time.get_ticks() - quiz.feedback_time
-        if feedback_display_time < 1000:
-            feedback_surface = font.render(quiz.feedback_text, True, 'black')
-            screen.blit(feedback_surface, feedback_text_position)
-        else:
-            quiz.next_question()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
+        pygame.display.flip()
+    return True
 
-    pygame.display.flip()
-
-pygame.quit()

@@ -1,7 +1,7 @@
 import pygame
-import game
+import games
+import main_du_jeu
 pygame.init()
-
 
 def starting_secondhand():
     pygame.display.set_caption("Seconde main")
@@ -9,7 +9,7 @@ def starting_secondhand():
 
     background = pygame.image.load('pictures/bg.jpg')
 
-    game=game.Game()
+    game= games.Game()
 
     running=True
 
@@ -68,3 +68,8 @@ def starting_secondhand():
 
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
+    if game.gamer.health<=0:
+        return False
+    elif game.gamer.score >= 500:
+        return True
+    main_du_jeu.start_mainjeu()

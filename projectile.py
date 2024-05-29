@@ -1,5 +1,5 @@
 import pygame
-import game
+import games
 class Projectile(pygame.sprite.Sprite):
 
     def __init__(self, gamer):

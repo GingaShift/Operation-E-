@@ -17,7 +17,7 @@ class Monster(pygame.sprite.Sprite):
     def damage(self,amount):
         self.health-=amount
         if self.health <=0:
-            self.rect.y = 0 - random.randint(2000,5000)
+            self.rect.y = 0 - random.randint(100,500)
             self.rect.x = random.randint(50,680)
             self.health=self.maxhealth
 
@@ -28,7 +28,7 @@ class Monster(pygame.sprite.Sprite):
             self.game.gamer.dammage(self.degat)
             self.health-=1
             if self.health <= 0:
-                self.rect.y = 0 - random.randint(2000,5000)
+                self.rect.y = 0 - random.randint(100,500)
                 self.rect.x = random.randint(50, 680)
                 self.health = self.maxhealth
 

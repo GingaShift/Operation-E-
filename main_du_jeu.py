@@ -3,8 +3,14 @@ import os
 import sys
 import moviepy.editor
 import pygame_menu as pm
+import main
+import piggy_boss
+import main_niveau_poubelle
+
+
 user_name = ""
 nom_utilisateur = ""
+
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -217,11 +223,13 @@ def display_settings_window(screen_game):
     if __name__ == "__main__":
         main()
 
-
+winrate=0
 def display_image(image_file, title_text,):
 
     import pygame
     global user_name
+    global winrate
+    global text_surface
     pygame.init()
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
@@ -280,20 +288,38 @@ def display_image(image_file, title_text,):
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (500,200)
 
-    level_2_font = pygame.image.load("voiture_mechante.png").convert_alpha()
-    level_2_font = pygame.transform.scale(level_2_font, (200, 200))
-    level_2_font_rect = level_2_font.get_rect()
-    level_2_font_rect.center = (700, 500)
+    if winrate>0:
+        level_2_font = pygame.image.load("voiture_mechante.png").convert_alpha()
+        level_2_font = pygame.transform.scale(level_2_font, (200, 200))
+        level_2_font_rect = level_2_font.get_rect()
+        level_2_font_rect.center = (700, 500)
+    else:
+        level_2_font = pygame.image.load("level_2_-removebg-preview.png").convert_alpha()
+        level_2_font = pygame.transform.scale(level_2_font, (200, 200))
+        level_2_font_rect = level_2_font.get_rect()
+        level_2_font_rect.center = (700, 500)
 
-    level_3_font = pygame.image.load("level_3.png").convert_alpha()
-    level_3_font = pygame.transform.scale(level_3_font, (200, 200))
-    level_3_font_rect = level_3_font.get_rect()
-    level_3_font_rect.center = (800, 300)
+    if winrate>1:
+        level_3_font = pygame.image.load("level_3.png").convert_alpha()
+        level_3_font = pygame.transform.scale(level_3_font, (200, 200))
+        level_3_font_rect = level_3_font.get_rect()
+        level_3_font_rect.center = (800, 300)
+    else:
+        level_3_font = pygame.image.load("level_3_lock.png").convert_alpha()
+        level_3_font = pygame.transform.scale(level_3_font, (200, 200))
+        level_3_font_rect = level_3_font.get_rect()
+        level_3_font_rect.center = (800, 300)
 
-    level_4_font = pygame.image.load("level_4.png").convert_alpha()
-    level_4_font = pygame.transform.scale(level_4_font, (200, 200))
-    level_4_font_rect = level_4_font.get_rect()
-    level_4_font_rect.center = (1000, 200)
+    if winrate>2:
+        level_4_font = pygame.image.load("level_4.png").convert_alpha()
+        level_4_font = pygame.transform.scale(level_4_font, (200, 200))
+        level_4_font_rect = level_4_font.get_rect()
+        level_4_font_rect.center = (1000, 200)
+    else:
+        level_4_font = pygame.image.load("level_4_lock.png").convert_alpha()
+        level_4_font = pygame.transform.scale(level_4_font, (200, 200))
+        level_4_font_rect = level_4_font.get_rect()
+        level_4_font_rect.center = (1000, 200)
 
     button_hover = False
     button_clicked = False
@@ -429,25 +455,40 @@ def display_image(image_file, title_text,):
                 if level_3_font_rect.collidepoint(event.pos):
                     level_3_bool = True
 
+                if level_4_font_rect.collidepoint(event.pos):
+                    level_4_bool = True
+
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            import main_niveau_poubelle
-            main_niveau_poubelle.main()
+            if main_niveau_poubelle.start_secondhand():
+                winrate+=1
+            start_mainjeu()
 
-        if level_2_bool :
+        if level_2_bool and winrate>0:
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            import voiture_mechante
-            level_2.main()
+            if True:
+                winrate+=1
+            start_mainjeu()
 
-        if level_3_bool :
+        if level_3_bool  and winrate>1:
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            import piggy_boss
-            piggy_boss.main()
+
+            if piggy_boss.start_piggyboss():
+                winrate+=1
+            start_mainjeu()
+
+        if level_4_bool and winrate>2:
+            level_2_selected = False
+            print("Level 4 selected")
+            # Importer et exécuter le script du niveau 2
+            if main.starting_secondhand():
+                winrate+=1
+            
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
         if not game_playing :
@@ -561,9 +602,9 @@ display_video("video.mp4","NeoNovaStudios")
 #    text_x = 800
 #    text_y = 100
 #    scroll_speed = 2
-
-display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
-
+def start_mainjeu():
+    display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
+start_mainjeu()
 
 # Utiliser split pour diviser la chaîne en mots
 # mots = user_name[0].split()
