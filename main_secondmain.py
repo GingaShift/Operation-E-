@@ -1,6 +1,5 @@
 import pygame
 import games
-import main_du_jeu
 pygame.init()
 
 def starting_secondhand():
@@ -15,11 +14,11 @@ def starting_secondhand():
 
     while running and game.gamer.health>0 and game.gamer.score < 500:
 
-        screen.blit(background, (0,-200))
+        screen.blit(background, (-570,-140))
         screen.blit(game.gamer.image, game.gamer.rect)
 
         myfont = pygame.font.SysFont("monospace", 62)
-        score_display = myfont.render(str(game.gamer.score), 1, (255, 255, 255))
+        score_display = myfont.render(str(game.gamer.score), 1, (0, 0, 0))
         screen.blit(score_display, (0, 0))
 
         game.gamer.update_health_bar(screen)
@@ -33,7 +32,6 @@ def starting_secondhand():
 
         for veto in game.all_vetold:
             veto.forward()
-            veto.update_health_bar(screen)
 
         for obs_etg in game.all_obs:
             obs_etg.forward()

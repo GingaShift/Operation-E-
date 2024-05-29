@@ -3,7 +3,7 @@ import os
 import sys
 import moviepy.editor
 import pygame_menu as pm
-import main
+import main_secondmain
 import piggy_boss
 import main_niveau_poubelle
 import voiture_mechante
@@ -467,7 +467,7 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if main_niveau_poubelle.start_benwars() and not l1:
+            if True: #main_niveau_poubelle.start_benwars() and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -476,7 +476,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if voiture_mechante.start_badcars() and not l2:
+            if True: #voiture_mechante.start_badcars() and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -485,7 +485,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if piggy_boss.start_piggyboss() and not l3:
+            if True: #piggy_boss.start_piggyboss() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
@@ -494,7 +494,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
-            if main.starting_secondhand():
+            if main_secondmain.starting_secondhand():
                 winrate+=1
             
 
