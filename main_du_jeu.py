@@ -234,6 +234,7 @@ def display_image(image_file, title_text,):
     global user_name
     global winrate
     global text_surface
+    global l1,l2,l3,l4,l5
     pygame.init()
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
@@ -475,7 +476,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if voiture_mechante.voiture_mechante() and not l2:
+            if voiture_mechante.start_badcars() and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()

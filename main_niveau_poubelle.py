@@ -48,10 +48,10 @@ def start_benwars():
         pygame.display.flip()
         if game.gamer.score==10:
             running=False
-            return True
+            win = True
         elif game.gamer.health<=0:
             running=False
-            return True
+            win = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running=False
@@ -70,3 +70,4 @@ def start_benwars():
                     game.gamer.upimage()
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
+    return win
