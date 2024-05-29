@@ -17,6 +17,8 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 screen_width, screen_height = screen.get_size()
 pygame.display.set_caption('Quiz de la Voiture Méchante (HAHA !!)')
 
+background_image = pygame.image.load('background_v_m.jpeg').convert()
+background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
 # Couleurs
 WHITE = (255, 255, 255)
