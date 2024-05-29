@@ -1,6 +1,7 @@
 import pygame
 import sys
 from moviepy.editor import VideoFileClip
+import time
 
 def play_video(video_path):
     try:
@@ -8,6 +9,7 @@ def play_video(video_path):
         clip.preview()
     except Exception as e:
         print(f"Error playing video {video_path}: {e}")
+
 # Initialisation de pygame
 play_video("voiture_mechante_video.mp4")
 pygame.init()
@@ -26,6 +28,10 @@ BLACK = (0, 0, 0)
 LIGHT_GRAY = (200, 200, 200)
 DARK_GRAY = (50, 50, 50)
 HIGHLIGHT_COLOR = (170, 170, 170)
+RED = (255, 0, 0)
+RED_BG = (255, 100, 100)  # Couleur de fond rouge pour la réponse incorrecte
+GREEN = (0, 255, 0)
+GREEN_BG = (100, 255, 100)  # Couleur de fond verte pour la réponse correcte
 
 # Polices
 font_name = "Comic Sans MS"
@@ -33,17 +39,13 @@ question_font_size = 30
 question_font = pygame.font.SysFont(font_name, question_font_size, bold=True)
 answer_font_size = 24
 answer_font = pygame.font.SysFont(font_name, answer_font_size)
-message_font_size = 36
-message_font = pygame.font.SysFont(font_name, message_font_size)
+message_font_size = 48  # Augmentation de la taille de la police pour le message final
+message_font = pygame.font.SysFont(font_name, message_font_size, bold=True)  # Police plus épaisse
 title_font_size = 60
 title_font = pygame.font.SysFont(font_name, title_font_size, bold=True)
 
 start_font_size = 36
 start_font = pygame.font.SysFont(font_name, start_font_size, bold=True)
-
-
-# Charger et redimensionner l'image de fond
-
 
 # Questions et réponses
 questions = [
@@ -106,7 +108,6 @@ def draw_text(text, font, color, surface, x, y, max_width=None):
     lines = []
     current_line = []
 
-    # Définition de la largeur maximale par défaut si aucune n'est fournie
     if max_width is None:
         max_width = surface.get_width()
 
@@ -135,28 +136,22 @@ def quiz():
     image1 = pygame.image.load('heros_final.png').convert_alpha()
     image2 = pygame.image.load('voiture1.png').convert_alpha()
 
-    # Redimensionner les images
     image1 = pygame.transform.scale(image1, (500, 500))
     image2 = pygame.transform.scale(image2, (500, 500))
 
-    # Positionner les images sur l'écran
-    x_image1, y_image1 = 80, 350  # Position de l'image 1
-    x_image2, y_image2 = 1000, 400  # Position de l'image 2
+    x_image1, y_image1 = 80, 350
+    x_image2, y_image2 = 1000, 400
 
     while running:
         screen.blit(background_image, (0, 0))
 
-        # Récupération de la question et des réponses actuelles
         question, answers = questions[current_question]
 
-        # Affichage de la question
         draw_text(question, question_font, WHITE, screen, screen_width // 2, 100, max_width=screen_width - 100)
 
-        # Affichage des images
         screen.blit(image1, (x_image1, y_image1))
         screen.blit(image2, (x_image2, y_image2))
 
-        # Gestion des événements
         mouse_x, mouse_y = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -167,12 +162,28 @@ def quiz():
                     if button_rects[i].collidepoint(event.pos):
                         if is_correct:
                             score += 1
+                            screen.blit(background_image, (0, 0))
+                            draw_text(question, question_font, WHITE, screen, screen_width // 2, 100, max_width=screen_width - 100)
+                            pygame.draw.rect(screen, GREEN_BG, button_rects[i])  # Dessine un fond vert pour la réponse correcte
+                            draw_text(answer, answer_font, GREEN, screen, screen_width // 2, 200 + i * (button_height + 20) + button_height // 2)
+                            screen.blit(image1, (x_image1, y_image1))
+                            screen.blit(pygame.transform.scale(image2, (500, 500)), (x_image2, y_image2))
+                            pygame.display.flip()
+                            time.sleep(0.5)  # Temporisation de 0,5 seconde
+                        else:
+                            screen.blit(background_image, (0, 0))
+                            draw_text(question, question_font, WHITE, screen, screen_width // 2, 100, max_width=screen_width - 100)
+                            pygame.draw.rect(screen, RED_BG, button_rects[i])  # Dessine un fond rouge pour la réponse incorrecte
+                            draw_text(answer, answer_font, RED, screen, screen_width // 2, 200 + i * (button_height + 20) + button_height // 2)
+                            screen.blit(pygame.transform.scale(image1, (500, 500)), (x_image1, y_image1))
+                            screen.blit(image2, (x_image2, y_image2))
+                            pygame.display.flip()
+                            time.sleep(0.5)  # Temporisation de 0,5 seconde
                         current_question += 1
                         if current_question >= len(questions):
                             running = False
                         break
 
-        # Affichage des réponses sous forme de boutons
         button_rects = []
         button_width = screen_width // 2
         button_height = 60
@@ -195,30 +206,28 @@ def show_score():
     while running:
         screen.blit(background_image, (0, 0))
 
-    if score >= 8:
-        message = f'Félicitations! Vous avez passé le niveau avec un score de {score} / {len(questions)}'
-    else:
-        message = f'Votre score : {score} / {len(questions)}. Vous devez refaire le niveau.'
+        if score >= 7:
+            message = f'Félicitations! Vous avez passé le niveau avec un score de {score} / {len(questions)}'
+        else:
+            message = f'Votre score : {score} / {len(questions)}. Vous devez refaire le niveau.'
 
-    draw_text(message, message_font, BLACK, screen, screen_width // 2, screen_height // 2 - 50,
-              max_width=screen_width - 100)
-    draw_text('Cliquez pour retourner au menu principal', message_font, DARK_GRAY, screen, screen_width // 2,
-              screen_height // 2 + 50)
+        draw_text(message, message_font, WHITE, screen, screen_width // 2, screen_height // 2 - 50,
+                  max_width=screen_width - 100)
+        draw_text('Cliquez pour quitter', message_font, WHITE, screen, screen_width // 2,
+                  screen_height // 2 + 50)
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            running = False
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                running = False
 
-    pygame.display.flip()
-
+        pygame.display.flip()
 
 # Fonction pour afficher le menu principal
 def main_menu():
     running = True
-
 
     while running:
         screen.blit(background_image, (0, 0))
@@ -232,15 +241,11 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 running = False
 
-
-
         pygame.display.flip()
 
-
 # Boucle principale
-while True:
-    main_menu()
-    quiz()
-    show_score()
-    score = 0
-    current_question = 0
+main_menu()
+quiz()
+show_score()
+pygame.quit()
+sys.exit()

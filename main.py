@@ -72,4 +72,3 @@ def starting_secondhand():
         return False
     elif game.gamer.score >= 500:
         return True
-    main_du_jeu.start_mainjeu()
