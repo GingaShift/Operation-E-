@@ -300,7 +300,7 @@ def display_image(image_file, title_text,):
         level_2_font_rect.center = (700, 500)
     else:
         level_2_font = pygame.image.load("level_2_lock.png").convert_alpha()
-        level_2_font = pygame.transform.scale(level_2_font, (200, 200))
+        level_2_font = pygame.transform.scale(level_2_font, (350, 200))
         level_2_font_rect = level_2_font.get_rect()
         level_2_font_rect.center = (700, 500)
 
@@ -311,7 +311,7 @@ def display_image(image_file, title_text,):
         level_3_font_rect.center = (800, 300)
     else:
         level_3_font = pygame.image.load("level_3_lock.png").convert_alpha()
-        level_3_font = pygame.transform.scale(level_3_font, (200, 200))
+        level_3_font = pygame.transform.scale(level_3_font, (230, 180))
         level_3_font_rect = level_3_font.get_rect()
         level_3_font_rect.center = (800, 300)
 
@@ -322,7 +322,7 @@ def display_image(image_file, title_text,):
         level_4_font_rect.center = (1000, 200)
     else:
         level_4_font = pygame.image.load("level_4_lock.png").convert_alpha()
-        level_4_font = pygame.transform.scale(level_4_font, (200, 200))
+        level_4_font = pygame.transform.scale(level_4_font, (210, 180))
         level_4_font_rect = level_4_font.get_rect()
         level_4_font_rect.center = (1000, 200)
 
