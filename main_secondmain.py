@@ -1,8 +1,15 @@
 import pygame
 import games
 pygame.init()
-
+from moviepy.editor import VideoFileClip
+def play_video(video_path):
+    try:
+        clip = VideoFileClip(video_path)
+        clip.preview()
+    except Exception as e:
+        print(f"Error playing video {video_path}: {e}")
 def starting_secondhand():
+    play_video("video_secondhand.mp4")
     pygame.display.set_caption("Seconde main")
     screen = pygame.display.set_mode((1080,720))
 

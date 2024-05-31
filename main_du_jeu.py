@@ -293,6 +293,11 @@ def display_image(image_file, title_text,):
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (500,200)
 
+    niveau_elec = pygame.image.load("niveau_elec.png").convert_alpha()
+    niveau_elec_font = pygame.transform.scale(niveau_elec, (200, 200))
+    niveau_elec_font_rect = niveau_elec_font.get_rect()
+    niveau_elec_font_rect.center = (1000, 500)
+
     if winrate>0:
         level_2_font = pygame.image.load("level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
@@ -353,6 +358,7 @@ def display_image(image_file, title_text,):
     button_hover_level_2 = False
     button_hover_level_3 = False
     button_hover_level_4 = False
+    button_hover_niveau_elec = False
 
     continuer = True
     while continuer:
@@ -405,6 +411,11 @@ def display_image(image_file, title_text,):
                     button_info_hover = True
                 else:
                     button_info_hover = False
+
+                if niveau_elec_font_rect.collidepoint(event.pos):
+                    button_hover_niveau_elec = True
+                else :
+                    button_hover_niveau_elec = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if play_font_rect.collidepoint(event.pos):
@@ -467,7 +478,7 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if True: #main_niveau_poubelle.start_benwars() and not l1:
+            if main_niveau_poubelle.start_benwars() and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -592,6 +603,11 @@ def display_image(image_file, title_text,):
                     screen_game.blit(adjust_brightness(level_4_font,50),level_4_font_rect)
                 else :
                     screen_game.blit(level_4_font,level_4_font_rect)
+
+                if button_hover_niveau_elec :
+                    screen_game.blit(adjust_brightness(niveau_elec_font,50),niveau_elec_font_rect)
+                else :
+                    screen_game.blit(niveau_elec_font,niveau_elec_font_rect)
 
 
 

@@ -4,10 +4,18 @@ import game_niveau_poubelle
 import dechet
 import dechetj
 import dechetv
-
+from moviepy.editor import VideoFileClip
+def play_video(video_path):
+    try:
+        clip = VideoFileClip(video_path)
+        clip.preview()
+    except Exception as e:
+        print(f"Error playing video {video_path}: {e}")
 pygame.init()
+
 def start_benwars():
     #generer la fenetre de notre jeu
+    play_video("video_camion_poubelle.mp4")
     pygame.display.set_caption('Ordure')
     screen = pygame.display.set_mode((1080,720))
 
