@@ -19,6 +19,10 @@ def starting_secondhand():
 
     running=True
 
+    pygame.mixer.init()
+    pygame.mixer.music.load("niveau_secondemain.mp3")
+    pygame.mixer.music.play(-1)
+
     while running and game.gamer.health>0 and game.gamer.score < 500:
 
         screen.blit(background, (-570,-140))

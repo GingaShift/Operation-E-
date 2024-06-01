@@ -25,7 +25,9 @@ def start_benwars():
     game = game_niveau_poubelle.Game()
 
     running = True
-
+    pygame.mixer.init()
+    pygame.mixer.music.load("niveau_poubel.mp3")
+    pygame.mixer.music.play(-1)
     while running:
 
         screen.blit(background,(-854,-324))

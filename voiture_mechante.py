@@ -196,7 +196,9 @@ def show_score(screen,background_image,message_font,WHITE,screen_width,screen_he
 # Fonction pour afficher le menu principal
 def main_menu(screen,background_image,questions,title_font,WHITE,screen_width,screen_height,start_font):
     running = True
-
+    pygame.mixer.init()
+    pygame.mixer.music.load("niveau_quiztransport.mp3")
+    pygame.mixer.music.play(-1)
     while running:
         screen.blit(background_image, (0, 0))
         draw_text('Quiz Environnemental', title_font, WHITE, screen, screen_width // 2, screen_height // 2 - 100, max_width=screen_width - 100)
