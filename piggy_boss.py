@@ -1,6 +1,6 @@
 import pygame
 from moviepy.editor import VideoFileClip
-import main_du_jeu
+
 
 def play_video(video_path):
     try:
@@ -102,7 +102,8 @@ class Quiz:
                 self.current_question += 1
                 self.answered = False
                 self.feedback_text = ""
-def start_piggyboss():
+def start_piggy():
+    play_video("boss.mp4")
     WIDTH = 1920
     HEIGHT = 1080
     screen = pygame.display.set_mode([WIDTH, HEIGHT])
@@ -136,7 +137,7 @@ def start_piggyboss():
     quiz = Quiz()
 
     # Jouer la vidéo avant de commencer le jeu
-    play_video("boss.mp4")
+
 
     run = True
     while run:

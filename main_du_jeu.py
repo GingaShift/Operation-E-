@@ -12,6 +12,7 @@ user_name = ""
 nom_utilisateur = ""
 l1=False
 l2=False
+l2_5=False
 l3=False
 l4=False
 l5=False
@@ -234,13 +235,14 @@ def display_image(image_file, title_text,):
     global user_name
     global winrate
     global text_surface
-    global l1,l2,l3,l4,l5
+    global l1,l2,l3,l4,l5,l2_5
     pygame.init()
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     level_1_bool = False
     level_2_bool = False
+    level_2_5_bool = False
     level_3_bool = False
     level_4_bool = False
     level_5_bool = False
@@ -293,11 +295,6 @@ def display_image(image_file, title_text,):
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (500,200)
 
-    niveau_elec = pygame.image.load("niveau_elec.png").convert_alpha()
-    niveau_elec_font = pygame.transform.scale(niveau_elec, (200, 200))
-    niveau_elec_font_rect = niveau_elec_font.get_rect()
-    niveau_elec_font_rect.center = (1000, 500)
-
     if winrate>0:
         level_2_font = pygame.image.load("level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
@@ -310,6 +307,17 @@ def display_image(image_file, title_text,):
         level_2_font_rect.center = (700, 500)
 
     if winrate>1:
+        level_2_5 = pygame.image.load("niveau_elec.png").convert_alpha()
+        level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
+        level_2_5_font_rect = level_2_5_font.get_rect()
+        level_2_5_font_rect.center = (1000, 500)
+    else:
+        level_2_5 = pygame.image.load("niveau_elec_lock.png").convert_alpha()
+        level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
+        level_2_5_font_rect = level_2_5_font.get_rect()
+        level_2_5_font_rect.center = (1000, 500)
+
+    if winrate>2:
         level_3_font = pygame.image.load("level_3.png").convert_alpha()
         level_3_font = pygame.transform.scale(level_3_font, (200, 200))
         level_3_font_rect = level_3_font.get_rect()
@@ -320,7 +328,7 @@ def display_image(image_file, title_text,):
         level_3_font_rect = level_3_font.get_rect()
         level_3_font_rect.center = (800, 300)
 
-    if winrate>2:
+    if winrate>3:
         level_4_font = pygame.image.load("level_4.png").convert_alpha()
         level_4_font = pygame.transform.scale(level_4_font, (200, 200))
         level_4_font_rect = level_4_font.get_rect()
@@ -356,9 +364,9 @@ def display_image(image_file, title_text,):
     button_state_return = False
     button_hover_level_1 = False
     button_hover_level_2 = False
+    button_hover_level_2_5 = False
     button_hover_level_3 = False
     button_hover_level_4 = False
-    button_hover_niveau_elec = False
 
     continuer = True
     while continuer:
@@ -376,6 +384,11 @@ def display_image(image_file, title_text,):
                     button_hover_level_2 = True
                 else :
                     button_hover_level_2 = False
+
+                if level_2_5_font_rect.collidepoint(event.pos):
+                    button_hover_level_2_5 = True
+                else :
+                    button_hover_level_2_5 = False
 
                 if level_3_font_rect.collidepoint(event.pos):
                     button_hover_level_3 = True
@@ -412,10 +425,6 @@ def display_image(image_file, title_text,):
                 else:
                     button_info_hover = False
 
-                if niveau_elec_font_rect.collidepoint(event.pos):
-                    button_hover_niveau_elec = True
-                else :
-                    button_hover_niveau_elec = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if play_font_rect.collidepoint(event.pos):
@@ -466,6 +475,9 @@ def display_image(image_file, title_text,):
                 if level_2_font_rect.collidepoint(event.pos):
                     level_2_bool = True
 
+                if  level_2_5_font_rect.collidepoint(event.pos):
+                    level_2_5_bool = True
+
                 if level_1_font_rect.collidepoint(event.pos):
                     level_1_bool = True
 
@@ -492,16 +504,25 @@ def display_image(image_file, title_text,):
                 l2=True
             start_mainjeu()
 
-        if level_3_bool and winrate==2:
+        if level_2_5_bool and winrate==2:
+            level_2_5_selected = False
+            print("Level 2.5 selected")
+            # Importer et exécuter le script du niveau 2.5
+            if True:  # electricity.starteleco() and not l2_5:
+                winrate += 1
+                l2_5 = True
+            start_mainjeu()
+
+        if level_3_bool and winrate==3:
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if True :  #piggy_boss.start_piggyboss() and not l3:
+            if piggy_boss.start_piggy() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
 
-        if level_4_bool and winrate==3:
+        if level_4_bool and winrate==4:
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
@@ -594,6 +615,11 @@ def display_image(image_file, title_text,):
                 else :
                     screen_game.blit(level_2_font, level_2_font_rect)
 
+                if button_hover_level_2_5 :
+                    screen_game.blit(adjust_brightness(level_2_5_font,50),level_2_5_font_rect)
+                else :
+                    screen_game.blit(level_2_5_font, level_2_5_font_rect)
+
                 if button_hover_level_3 :
                     screen_game.blit(adjust_brightness(level_3_font,50),level_3_font_rect)
                 else :
@@ -604,10 +630,7 @@ def display_image(image_file, title_text,):
                 else :
                     screen_game.blit(level_4_font,level_4_font_rect)
 
-                if button_hover_niveau_elec :
-                    screen_game.blit(adjust_brightness(niveau_elec_font,50),niveau_elec_font_rect)
-                else :
-                    screen_game.blit(niveau_elec_font,niveau_elec_font_rect)
+
 
 
 

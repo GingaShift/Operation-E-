@@ -216,10 +216,11 @@ def main_menu(screen,background_image,questions,title_font,WHITE,screen_width,sc
 def start_badcars():
     global questions
     global current_question
+    play_video("voiture_mechante_video.mp4")
     if current_question!=0:
         current_question=0
-    play_video("voiture_mechante_video.mp4")
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+    screen = pygame.display.set_mode((1080,720))
     screen_width, screen_height = screen.get_size()
     pygame.display.set_caption('Quiz de la Voiture Méchante (HAHA !!)')
 
