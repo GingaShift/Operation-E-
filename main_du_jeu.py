@@ -293,51 +293,51 @@ def display_image(image_file, title_text,):
     level_1_font = pygame.image.load("level_1.png").convert_alpha()
     level_1_font = pygame.transform.scale(level_1_font,(200,200))
     level_1_font_rect = level_1_font.get_rect()
-    level_1_font_rect.center = (500,200)
+    level_1_font_rect.center = (450,200)
 
     if winrate>0:
         level_2_font = pygame.image.load("level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
         level_2_font_rect = level_2_font.get_rect()
-        level_2_font_rect.center = (700, 500)
+        level_2_font_rect.center = (800, 200)
     else:
         level_2_font = pygame.image.load("level_2_lock.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (350, 200))
         level_2_font_rect = level_2_font.get_rect()
-        level_2_font_rect.center = (700, 500)
+        level_2_font_rect.center = (800, 200)
 
     if winrate>1:
         level_2_5 = pygame.image.load("niveau_elec.png").convert_alpha()
         level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
         level_2_5_font_rect = level_2_5_font.get_rect()
-        level_2_5_font_rect.center = (1000, 500)
+        level_2_5_font_rect.center = (950, 475)
     else:
         level_2_5 = pygame.image.load("niveau_elec_lock.png").convert_alpha()
         level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
         level_2_5_font_rect = level_2_5_font.get_rect()
-        level_2_5_font_rect.center = (1000, 500)
+        level_2_5_font_rect.center = (925, 475)
 
     if winrate>2:
         level_3_font = pygame.image.load("level_3.png").convert_alpha()
         level_3_font = pygame.transform.scale(level_3_font, (200, 200))
         level_3_font_rect = level_3_font.get_rect()
-        level_3_font_rect.center = (800, 300)
+        level_3_font_rect.center = (700, 650)
     else:
         level_3_font = pygame.image.load("level_3_lock.png").convert_alpha()
         level_3_font = pygame.transform.scale(level_3_font, (230, 180))
         level_3_font_rect = level_3_font.get_rect()
-        level_3_font_rect.center = (800, 300)
+        level_3_font_rect.center = (700, 650)
 
     if winrate>3:
         level_4_font = pygame.image.load("level_4.png").convert_alpha()
         level_4_font = pygame.transform.scale(level_4_font, (200, 200))
         level_4_font_rect = level_4_font.get_rect()
-        level_4_font_rect.center = (1000, 200)
+        level_4_font_rect.center = (350, 600)
     else:
         level_4_font = pygame.image.load("level_4_lock.png").convert_alpha()
         level_4_font = pygame.transform.scale(level_4_font, (210, 180))
         level_4_font_rect = level_4_font.get_rect()
-        level_4_font_rect.center = (1000, 200)
+        level_4_font_rect.center = (350, 600)
 
     button_hover = False
     button_clicked = False
@@ -431,7 +431,7 @@ def display_image(image_file, title_text,):
                 if play_font_rect.collidepoint(event.pos):
                     pygame.mixer.Sound("son_play.mp3").play()
                     reset_window_content(screen_game)
-                    image = pygame.image.load("galaxy.jpg").convert()
+                    image = pygame.image.load("earth bad mood.png").convert()
                     screen_game.blit(image, (0,0))
                     pygame.display.flip()
                     game_playing = True
