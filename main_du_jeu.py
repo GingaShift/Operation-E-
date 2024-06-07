@@ -373,7 +373,8 @@ def display_image(image_file, title_text,):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 continuer = False
-                pygame.QUIT
+                pygame.quit()
+
             elif event.type == pygame.MOUSEMOTION:
                 if level_1_font_rect.collidepoint(event.pos):
                     button_hover_level_1 = True
