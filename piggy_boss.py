@@ -104,6 +104,9 @@ class Quiz:
                 self.feedback_text = ""
 def start_piggy():
     play_video("boss.mp4")
+    pygame.mixer.init()
+    pygame.mixer.music.load("niveau_piggy.mp3")
+    pygame.mixer.music.play(-1)
     WIDTH = 1920
     HEIGHT = 1080
     screen = pygame.display.set_mode([WIDTH, HEIGHT])

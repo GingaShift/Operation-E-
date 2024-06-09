@@ -500,7 +500,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if voiture_mechante.start_badcars() and not l2:
+            if True : #voiture_mechante.start_badcars() and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -518,7 +518,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if True :#piggy_boss.start_piggy() and not l3:
+            if piggy_boss.start_piggy() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
