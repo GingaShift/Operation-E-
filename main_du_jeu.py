@@ -250,7 +250,7 @@ def display_image(image_file, title_text,):
 
 
     # Chargement de l'image pour le bouton "info"
-    info_button = pygame.image.load("info.png").convert_alpha()
+    info_button = pygame.image.load("bouton/info.png").convert_alpha()
     info_button = pygame.transform.scale(info_button, (100, 100))
     info_button_rect = info_button.get_rect()
     info_button_rect.center = (1100, 710)
@@ -271,27 +271,27 @@ def display_image(image_file, title_text,):
     # Fin Ajout DE
 
     # Chargement de l'image pour le bouton "settings"
-    settings_button = pygame.image.load("settings.png").convert_alpha()
+    settings_button = pygame.image.load("bouton/settings.png").convert_alpha()
     settings_button = pygame.transform.scale(settings_button, (100, 100))
     settings_button_rect = settings_button.get_rect()
     settings_button_rect.center = (100, 710)
 
-    play_font = pygame.image.load("play.png").convert_alpha()
+    play_font = pygame.image.load("bouton/play.png").convert_alpha()
     play_font = pygame.transform.scale(play_font,(400,130))
     play_font_rect = play_font.get_rect()
     play_font_rect.center = (600,400)
 
-    quit_font = pygame.image.load("Quit.png").convert_alpha()
+    quit_font = pygame.image.load("bouton/Quit.png").convert_alpha()
     quit_font = pygame.transform.scale(quit_font,(400,180))
     quit_font_rect = play_font.get_rect()
     quit_font_rect.center = (600,530)
 
-    return_font = pygame.image.load("return_arrow.png").convert_alpha()
+    return_font = pygame.image.load("bouton/return_arrow.png").convert_alpha()
     return_font = pygame.transform.scale(return_font, (200, 200))
     return_font_rect = return_font.get_rect()
     return_font_rect.center = (200, 200)
 
-    level_1_font = pygame.image.load("level_1.png").convert_alpha()
+    level_1_font = pygame.image.load("bouton/level_1.png").convert_alpha()
     level_1_font = pygame.transform.scale(level_1_font,(200,200))
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (450,200)
@@ -299,56 +299,56 @@ def display_image(image_file, title_text,):
 
 
     if winrate>0:
-        level_2_font = pygame.image.load("level_2.png").convert_alpha()
+        level_2_font = pygame.image.load("bouton/level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
         level_2_font_rect = level_2_font.get_rect()
         level_2_font_rect.center = (800, 200)
     else:
-        level_2_font = pygame.image.load("level_2_lock.png").convert_alpha()
+        level_2_font = pygame.image.load("bouton/level_2_lock.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (350, 200))
         level_2_font_rect = level_2_font.get_rect()
         level_2_font_rect.center = (800, 200)
 
     if winrate>1:
-        level_2_5 = pygame.image.load("niveau_elec.png").convert_alpha()
+        level_2_5 = pygame.image.load("bouton/niveau_elec.png").convert_alpha()
         level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
         level_2_5_font_rect = level_2_5_font.get_rect()
         level_2_5_font_rect.center = (950, 475)
     else:
-        level_2_5 = pygame.image.load("niveau_elec_lock.png").convert_alpha()
+        level_2_5 = pygame.image.load("bouton/niveau_elec_lock.png").convert_alpha()
         level_2_5_font = pygame.transform.scale(level_2_5, (200, 200))
         level_2_5_font_rect = level_2_5_font.get_rect()
         level_2_5_font_rect.center = (925, 475)
 
     if winrate>2:
-        level_3_font = pygame.image.load("level_3.png").convert_alpha()
+        level_3_font = pygame.image.load("bouton/level_3.png").convert_alpha()
         level_3_font = pygame.transform.scale(level_3_font, (200, 200))
         level_3_font_rect = level_3_font.get_rect()
         level_3_font_rect.center = (700, 650)
     else:
-        level_3_font = pygame.image.load("level_3_lock.png").convert_alpha()
+        level_3_font = pygame.image.load("bouton/level_3_lock.png").convert_alpha()
         level_3_font = pygame.transform.scale(level_3_font, (230, 180))
         level_3_font_rect = level_3_font.get_rect()
         level_3_font_rect.center = (700, 650)
 
     if winrate>3:
-        level_4_font = pygame.image.load("level_4.png").convert_alpha()
+        level_4_font = pygame.image.load("bouton/level_4.png").convert_alpha()
         level_4_font = pygame.transform.scale(level_4_font, (200, 200))
         level_4_font_rect = level_4_font.get_rect()
         level_4_font_rect.center = (350, 600)
     else:
-        level_4_font = pygame.image.load("level_4_lock.png").convert_alpha()
+        level_4_font = pygame.image.load("bouton/level_4_lock.png").convert_alpha()
         level_4_font = pygame.transform.scale(level_4_font, (210, 180))
         level_4_font_rect = level_4_font.get_rect()
         level_4_font_rect.center = (350, 600)
 
     if winrate > 4:
-        level_5_font = pygame.image.load("start-1436754_1280.png").convert_alpha()
+        level_5_font = pygame.image.load("bouton/start-1436754_1280.png").convert_alpha()
         level_5_font = pygame.transform.scale(level_5_font, (200, 200))
         level_5_font_rect = level_5_font.get_rect()
         level_5_font_rect.center = (625, 425)
     else:
-        level_5_font = pygame.image.load("fauxbtn.png").convert_alpha()
+        level_5_font = pygame.image.load("bouton/fauxbtn.png").convert_alpha()
         level_5_font = pygame.transform.scale(level_5_font, (200, 200))
         level_5_font_rect = level_5_font.get_rect()
         level_5_font_rect.center = (625, 425)
@@ -568,8 +568,8 @@ def display_image(image_file, title_text,):
             print("Level 5 selected")
             # Importer et exécuter le script du niveau 2
             if main_final.start_final() and not l5:
-                pass
-                #video de fin
+                pass #video de fin
+                pygame.quit()
             else:
                 start_mainjeu()
 
