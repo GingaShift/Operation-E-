@@ -356,7 +356,7 @@ def display_image(image_file, title_text,):
 
     # Surface pour le contenu à afficher lorsque le bouton "info" est cliqué
     new_content_surface = pygame.Surface((800, 600))
-    new_content_surface.fill((255, 255, 255))  # Remplir avec une couleur de fond blanche par défaut
+    new_content_surface.fill((255, 255, 255))  # Remplir avec une couleur de fond blanche par défauts
     if not user_name:
         user_name = display_name_entry(screen_game)
 
