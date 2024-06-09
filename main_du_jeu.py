@@ -523,7 +523,7 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if True : #main_niveau_poubelle.start_benwars() and not l1:
+            if main_niveau_poubelle.start_benwars() and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -532,7 +532,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if True : #voiture_mechante.start_badcars() and not l2:
+            if voiture_mechante.start_badcars() and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -550,7 +550,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #piggy_boss.start_piggy() and not l3:
+            if piggy_boss.start_piggy() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
@@ -568,12 +568,10 @@ def display_image(image_file, title_text,):
             print("Level 5 selected")
             # Importer et exécuter le script du niveau 2
             if main_final.start_final() and not l5:
-                pass #video de fin
+                main_secondmain.play_video('video/FIN.mp4')
                 pygame.quit()
             else:
                 start_mainjeu()
-
-
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
         if not game_playing :
@@ -595,6 +593,7 @@ def display_image(image_file, title_text,):
                 # Bouton en surbrillance
             else:
                 screen_game.blit(play_font, play_font_rect)  # Bouton normal
+            image=pygame.image.load('galaxy.jpg')
 
             # Dessiner le bouton "Quit"
             if button_hover_quit:
@@ -689,7 +688,7 @@ def display_image(image_file, title_text,):
         pygame.display.flip()
         pygame.time.Clock().tick(60)
 
-display_video("video.mp4","NeoNovaStudios")
+
 # Afficher la seconde fenêtre avec une image
 
 
@@ -703,6 +702,8 @@ display_video("video.mp4","NeoNovaStudios")
 #    scroll_speed = 2
 def start_mainjeu():
     display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
+main_secondmain.play_video("video/video.mp4")
+main_secondmain.play_video("video/Start.mp4")
 start_mainjeu()
 
 # Utiliser split pour diviser la chaîne en mots

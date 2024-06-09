@@ -11,7 +11,7 @@ pygame.init()
 
 def start_benwars():
     #generer la fenetre de notre jeu
-    play_video("video_camion_poubelle.mp4")
+    play_video("video/video_camion_poubelle.mp4")
     pygame.display.set_caption('Ordure')
     screen = pygame.display.set_mode((1080,720))
 

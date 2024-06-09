@@ -244,7 +244,7 @@ def main_menu(screen, background_image, questions, title_font, WHITE, screen_wid
 def start_badcars():
     global questions
     global current_question
-    play_video("voiture_mechante_video.mp4")
+    play_video("video/voiture_mechante_video.mp4")
     if current_question != 0:
         current_question = 0
 
