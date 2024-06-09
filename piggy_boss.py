@@ -105,7 +105,7 @@ class Quiz:
 def start_piggy():
     play_video("video/boss.mp4")
     pygame.mixer.init()
-    pygame.mixer.music.load("niveau_piggy.mp3")
+    pygame.mixer.music.load("musique/niveau_piggy.mp3")
     pygame.mixer.music.play(-1)
     WIDTH = 1920
     HEIGHT = 1080

@@ -369,7 +369,7 @@ def display_image(image_file, title_text,):
         window_entry_name_close = True
 
     pygame.mixer.init()
-    pygame.mixer.music.load("son_operationE.mp3")
+    pygame.mixer.music.load("musique/son_operationE.mp3")
     pygame.mixer.music.play(-1)
 
     button_hover_play = False
@@ -456,7 +456,7 @@ def display_image(image_file, title_text,):
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if play_font_rect.collidepoint(event.pos):
-                    pygame.mixer.Sound("son_play.mp3").play()
+                    pygame.mixer.Sound("musique/son_play.mp3").play()
                     reset_window_content(screen_game)
                     image = pygame.image.load("earth bad mood.png").convert()
                     screen_game.blit(image, (0,0))

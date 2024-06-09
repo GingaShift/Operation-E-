@@ -7,7 +7,7 @@ class Monster2(pygame.sprite.Sprite):
         self.health = 1
         self.maxhealth = 1
         self.degat = 1
-        self.image = pygame.image.load('picture/dj.png')
+        self.image = pygame.image.load('picture_poubelle/dj.png')
         self.type = 'jaune'
         self.rect = self.image.get_rect()
         self.rect.x=random.randint(50,680)

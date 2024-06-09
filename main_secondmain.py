@@ -13,14 +13,14 @@ def starting_secondhand():
     pygame.display.set_caption("Seconde main")
     screen = pygame.display.set_mode((1080,720))
 
-    background = pygame.image.load('pictures/bg.jpg')
+    background = pygame.image.load('pictures_secondmain/bg.jpg')
 
     game= games.Game()
 
     running=True
 
     pygame.mixer.init()
-    pygame.mixer.music.load("niveau_secondemain.mp3")
+    pygame.mixer.music.load("musique/niveau_secondemain.mp3")
     pygame.mixer.music.play(-1)
 
     while running and game.gamer.health>0 and game.gamer.score < 250:

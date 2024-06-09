@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.type = "marron"
         self.degat = 1
         self.velocity = 9
-        self.image = pygame.image.load("picture/pm.png")
+        self.image = pygame.image.load("picture_poubelle/pm.png")
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 500
@@ -18,11 +18,11 @@ class Player(pygame.sprite.Sprite):
 
     def upimage(self):
         if self.type == "marron":
-            self.image = pygame.image.load("picture/pm.png")
+            self.image = pygame.image.load("picture_poubelle/pm.png")
         elif self.type == "jaune":
-            self.image = pygame.image.load("picture/pj.png")
+            self.image = pygame.image.load("picture_poubelle/pj.png")
         elif self.type == "vert":
-            self.image = pygame.image.load("picture/pv.png")
+            self.image = pygame.image.load("picture_poubelle/pv.png")
     def dammage(self, amount):
         self.health -= amount
 

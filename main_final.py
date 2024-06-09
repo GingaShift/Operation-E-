@@ -4,6 +4,9 @@ import random
 pygame.init()
 
 def start_final():
+    pygame.mixer.init()
+    pygame.mixer.music.load("musique/finalemusique.mp3")
+    pygame.mixer.music.play(-1)
     pygame.display.set_caption('Finale task')
     screen = pygame.display.set_mode((1080,810))
     game= game_final.Game()

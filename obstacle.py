@@ -7,7 +7,7 @@ class etg(pygame.sprite.Sprite):
     def __init__(self,game,y):
         super().__init__()
         self.game=game
-        self.image = pygame.image.load("pictures/etagere.png")
+        self.image = pygame.image.load("pictures_secondmain/etagere.png")
         self.rect = self.image.get_rect()
         self.rect.x = 1000
         self.rect.y = y

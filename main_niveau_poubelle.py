@@ -15,14 +15,14 @@ def start_benwars():
     pygame.display.set_caption('Ordure')
     screen = pygame.display.set_mode((1080,720))
 
-    background = pygame.image.load('picture/bg.jpg')
+    background = pygame.image.load('picture_poubelle/bg.jpg')
 
 
     game = game_niveau_poubelle.Game()
 
     running = True
     pygame.mixer.init()
-    pygame.mixer.music.load("niveau_poubel.mp3")
+    pygame.mixer.music.load("musique/niveau_poubel.mp3")
     pygame.mixer.music.play(-1)
     while running:
 
@@ -33,15 +33,15 @@ def start_benwars():
         screen.blit(score_display, (0, 0))
 
         if game.gamer.health == 5:
-            screen.blit(pygame.image.load('picture/vie5.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie5.png'),(0,0))
         elif game.gamer.health == 4:
-            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
         elif game.gamer.health == 3:
-            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
         elif game.gamer.health == 2:
-            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
         elif game.gamer.health == 1:
-            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
 
         game.all_dechet.draw(screen)
         game.all_dechet1.draw(screen)
