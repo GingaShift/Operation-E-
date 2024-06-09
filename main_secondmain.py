@@ -77,6 +77,7 @@ def starting_secondhand():
 
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
+
     if game.gamer.health<=0:
         return False
     elif game.gamer.score >= 250:

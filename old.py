@@ -6,8 +6,8 @@ class vet_old(pygame.sprite.Sprite):
     def __init__(self,game):
         super().__init__()
         self.game=game
-        self.health = 30
-        self.max_health = 30
+        self.health = 20
+        self.max_health = 20
         self.attack = 1
         self.image = pygame.image.load("pictures/vetement_old.png")
         self.rect = self.image.get_rect()

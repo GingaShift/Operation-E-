@@ -17,7 +17,7 @@ class etg(pygame.sprite.Sprite):
         self.rect.x -= self.velocity
         if self.game.check_collision(self, self.game.all_gamer):
             self.game.gamer.rect.x -= 5
-            if self.game.gamer.rect.x <=0:
+            if self.game.gamer.rect.x <=0 - 2*self.image.get_width():
                 self.game.gamer.health -= 20
                 self.game.gamer.rect.x = 500
         if self.rect.x <=0:

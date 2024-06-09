@@ -1,9 +1,5 @@
 import pygame
-import player_niveau_poubelle
 import game_niveau_poubelle
-import dechet
-import dechetj
-import dechetv
 from moviepy.editor import VideoFileClip
 def play_video(video_path):
     try:
@@ -36,7 +32,16 @@ def start_benwars():
         score_display = myfont.render(str(game.gamer.score)+'/10', 1, (255, 255, 255))
         screen.blit(score_display, (0, 0))
 
-        game.gamer.update_health_bar(screen)
+        if game.gamer.health == 5:
+            screen.blit(pygame.image.load('picture/vie5.png'),(0,0))
+        elif game.gamer.health == 4:
+            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+        elif game.gamer.health == 3:
+            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+        elif game.gamer.health == 2:
+            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
+        elif game.gamer.health == 1:
+            screen.blit(pygame.image.load('picture/vie4.png'),(0,0))
 
         game.all_dechet.draw(screen)
         game.all_dechet1.draw(screen)

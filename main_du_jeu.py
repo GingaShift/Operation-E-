@@ -7,6 +7,7 @@ import main_secondmain
 import piggy_boss
 import main_niveau_poubelle
 import voiture_mechante
+import main_final
 
 user_name = ""
 nom_utilisateur = ""
@@ -246,7 +247,6 @@ def display_image(image_file, title_text,):
     level_3_bool = False
     level_4_bool = False
     level_5_bool = False
-    level_start_bool = False
 
 
     # Chargement de l'image pour le bouton "info"
@@ -343,16 +343,22 @@ def display_image(image_file, title_text,):
         level_4_font_rect.center = (350, 600)
 
     if winrate > 4:
-        level_start_font = pygame.image.load("start-1436754_1280.png").convert_alpha()
-        level_start_font = pygame.transform.scale(level_4_font, (210, 180))
-        level_start_font_rect = level_start_font.get_rect()
-        level_start_font_rect.center = (350, 600)
+        level_5_font = pygame.image.load("start-1436754_1280.png").convert_alpha()
+        level_5_font = pygame.transform.scale(level_5_font, (200, 200))
+        level_5_font_rect = level_5_font.get_rect()
+        level_5_font_rect.center = (625, 425)
+    else:
+        level_5_font = pygame.image.load("fauxbtn.png").convert_alpha()
+        level_5_font = pygame.transform.scale(level_5_font, (200, 200))
+        level_5_font_rect = level_5_font.get_rect()
+        level_5_font_rect.center = (625, 425)
+
+
 
     button_hover = False
     button_clicked = False
 
     # Créer un objet font
-
 
     # Surface pour le contenu à afficher lorsque le bouton "info" est cliqué
     new_content_surface = pygame.Surface((800, 600))
@@ -376,7 +382,8 @@ def display_image(image_file, title_text,):
     button_hover_level_2_5 = False
     button_hover_level_3 = False
     button_hover_level_4 = False
-    button_hover_start_level = False
+    button_hover_level_5 = False
+
 
     continuer = True
     while continuer:
@@ -411,6 +418,13 @@ def display_image(image_file, title_text,):
                 else :
                     button_hover_level_4 = False
 
+                if level_5_font_rect.collidepoint(event.pos):
+                    button_hover_level_5 = True
+                else :
+                    button_hover_level_5 = False
+
+
+
                 if return_font_rect.collidepoint(event.pos):
                     button_state_return = True
                 else :
@@ -426,6 +440,7 @@ def display_image(image_file, title_text,):
                     button_hover_quit = True
                 else :
                     button_hover_quit = False
+
                 if settings_button_rect.collidepoint(event.pos):
                     button_hover = True
                 else:
@@ -436,10 +451,7 @@ def display_image(image_file, title_text,):
                 else:
                     button_info_hover = False
 
-                if level_start_font_rect.collidepoint(event.pos):
-                    button_hover_start_level = True
-                else :
-                    button_hover_start_level = False
+
 
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -503,8 +515,10 @@ def display_image(image_file, title_text,):
                 if level_4_font_rect.collidepoint(event.pos):
                     level_4_bool = True
 
-                if level_start_font_rect.collidepoint(event.pos):
-                    level_start_bool = True
+                if level_5_font_rect.collidepoint(event.pos):
+                    level_5_bool = True
+
+
 
         if level_1_bool :
             level_2_selected = False
@@ -536,7 +550,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if piggy_boss.start_piggy() and not l3:
+            if True: #piggy_boss.start_piggy() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
@@ -545,11 +559,20 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
-            if main_secondmain.starting_secondhand():
+            if main_secondmain.starting_secondhand() and not l4:
                 winrate+=1
+                l4=True
+            start_mainjeu()
 
-        if level_start_bool and winrate == 5:
-            print("level start selected")
+        if level_5_bool and winrate==5:
+            print("Level 5 selected")
+            # Importer et exécuter le script du niveau 2
+            if main_final.start_final() and not l5:
+                pass
+                #video de fin
+            else:
+                start_mainjeu()
+
 
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
@@ -568,7 +591,8 @@ def display_image(image_file, title_text,):
                 screen_game.blit(info_button, info_button_rect)
 
             if button_hover_play:
-                screen_game.blit(adjust_brightness(play_font, 50), play_font_rect)  # Bouton en surbrillance
+                screen_game.blit(adjust_brightness(play_font, 50), play_font_rect)
+                # Bouton en surbrillance
             else:
                 screen_game.blit(play_font, play_font_rect)  # Bouton normal
 
@@ -652,10 +676,10 @@ def display_image(image_file, title_text,):
                 else :
                     screen_game.blit(level_4_font,level_4_font_rect)
 
-                if button_hover_start_level :
-                    screen_game.blit(adjust_brightness(level_start_font, 50), level_start_font_rect)
+                if button_hover_level_5:
+                    screen_game.blit(adjust_brightness(level_5_font,50),level_5_font_rect)
                 else :
-                    screen_game.blit(level_4_font, 50, level_4_font_rect)
+                    screen_game.blit(level_5_font,level_5_font_rect)
 
 
 

@@ -25,9 +25,7 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load("picture/pv.png")
     def dammage(self, amount):
         self.health -= amount
-    def update_health_bar(self,surface):
-        pygame.draw.rect(surface,(60,63,60),[self.rect.x + 10, self.rect.y -20, self.max_health*30,5])
-        pygame.draw.rect(surface, (111, 210, 46), [self.rect.x + 10, self.rect.y - 20, self.health*30, 5])
+
 
     def moveright(self):
         self.rect.x += self.velocity
