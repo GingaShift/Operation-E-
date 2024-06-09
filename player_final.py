@@ -8,7 +8,8 @@ class Player(pygame.sprite.Sprite):
         self.health = 3
         self.max_health = 3
         self.velocity = 9
-        self.image = pygame.image.load("Asset_final/player.png")
+        self.image = pygame.image.load("Asset_final/img.png")
+        self.image = pygame.transform.scale(self.image, (200,200))
         self.rect =self.image.get_rect()
         self.rect.x = 500
         self.rect.y = 500
