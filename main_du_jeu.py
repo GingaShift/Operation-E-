@@ -246,6 +246,7 @@ def display_image(image_file, title_text,):
     level_3_bool = False
     level_4_bool = False
     level_5_bool = False
+    level_start_bool = False
 
 
     # Chargement de l'image pour le bouton "info"
@@ -295,6 +296,8 @@ def display_image(image_file, title_text,):
     level_1_font_rect = level_1_font.get_rect()
     level_1_font_rect.center = (450,200)
 
+
+
     if winrate>0:
         level_2_font = pygame.image.load("level_2.png").convert_alpha()
         level_2_font = pygame.transform.scale(level_2_font, (200, 200))
@@ -339,6 +342,12 @@ def display_image(image_file, title_text,):
         level_4_font_rect = level_4_font.get_rect()
         level_4_font_rect.center = (350, 600)
 
+    if winrate > 4:
+        level_start_font = pygame.image.load("start-1436754_1280.png").convert_alpha()
+        level_start_font = pygame.transform.scale(level_4_font, (210, 180))
+        level_start_font_rect = level_start_font.get_rect()
+        level_start_font_rect.center = (350, 600)
+
     button_hover = False
     button_clicked = False
 
@@ -367,6 +376,7 @@ def display_image(image_file, title_text,):
     button_hover_level_2_5 = False
     button_hover_level_3 = False
     button_hover_level_4 = False
+    button_hover_start_level = False
 
     continuer = True
     while continuer:
@@ -425,6 +435,11 @@ def display_image(image_file, title_text,):
                     button_info_hover = True
                 else:
                     button_info_hover = False
+
+                if level_start_font_rect.collidepoint(event.pos):
+                    button_hover_start_level = True
+                else :
+                    button_hover_start_level = False
 
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -488,6 +503,9 @@ def display_image(image_file, title_text,):
                 if level_4_font_rect.collidepoint(event.pos):
                     level_4_bool = True
 
+                if level_start_font_rect.collidepoint(event.pos):
+                    level_start_bool = True
+
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
@@ -529,7 +547,10 @@ def display_image(image_file, title_text,):
             # Importer et exécuter le script du niveau 2
             if main_secondmain.starting_secondhand():
                 winrate+=1
-            
+
+        if level_start_bool and winrate == 5:
+            print("level start selected")
+
 
         screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
         if not game_playing :
@@ -630,6 +651,12 @@ def display_image(image_file, title_text,):
                     screen_game.blit(adjust_brightness(level_4_font,50),level_4_font_rect)
                 else :
                     screen_game.blit(level_4_font,level_4_font_rect)
+
+                if button_hover_start_level :
+                    screen_game.blit(adjust_brightness(level_start_font, 50), level_start_font_rect)
+                else :
+                    screen_game.blit(level_4_font, 50, level_4_font_rect)
+
 
 
 
