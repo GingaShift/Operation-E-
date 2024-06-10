@@ -2,8 +2,18 @@ import pygame
 import game_final
 import random
 pygame.init()
+from moviepy.editor import VideoFileClip
+def play_video(video_path):
+    try:
+        clip = VideoFileClip(video_path)
+        clip.preview()
+    except Exception as e:
+        print(f"Error playing video {video_path}: {e}")
+pygame.init()
 
 def start_final():
+
+    play_video('video/final_step.mp4')
     pygame.mixer.init()
     pygame.mixer.music.load("musique/finalemusique.mp3")
     pygame.mixer.music.play(-1)

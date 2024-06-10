@@ -24,6 +24,12 @@ class Monster1(pygame.sprite.Sprite):
     def falling(self):
         if not self.game.check_collision(self,self.game.all_player):
             self.rect.y += self.velocity
+        else:
+            self.damage(self.health)
+            if self.type == self.game.gamer.type:
+                self.game.gamer.score+=1
+            else:
+                self.game.gamer.dammage(1)
         if self.rect.y == 720:
             self.game.gamer.dammage(self.degat)
             self.health-=1

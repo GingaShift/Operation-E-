@@ -8,6 +8,7 @@ import piggy_boss
 import main_niveau_poubelle
 import voiture_mechante
 import main_final
+import main_elec
 
 user_name = ""
 nom_utilisateur = ""
@@ -44,8 +45,7 @@ def adjust_brightness(image, brightness):
 
 def display_name_entry(screen_game):
     # Créez une nouvelle fenêtre pour la saisie du nom
-    name_window = pm.Menu("Enter Your Name (4 letters max)", 800, 600, theme=pm.themes.THEME_DEFAULT)
-
+    name_window = pm.Menu("Enter Your Name (4 letters max)", 800, 600, theme=pm.themes.THEME_GREEN)
 
     # Définissez une variable pour stocker le nom saisi par l'utilisateur
     user_name = [""]  # Utilisez une liste pour stocker le nom afin qu'elle soit mutable dans la fonction
@@ -523,7 +523,7 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if main_niveau_poubelle.start_benwars() and not l1:
+            if True: #main_niveau_poubelle.start_benwars() and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -532,7 +532,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if voiture_mechante.start_badcars() and not l2:
+            if True: #voiture_mechante.start_badcars() and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -541,7 +541,7 @@ def display_image(image_file, title_text,):
             level_2_5_selected = False
             print("Level 2.5 selected")
             # Importer et exécuter le script du niveau 2.5
-            if True:  # electricity.starteleco() and not l2_5:
+            if True: #main_elec.starting_eleco() and not l2_5:
                 winrate += 1
                 l2_5 = True
             start_mainjeu()
@@ -550,7 +550,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if piggy_boss.start_piggy() and not l3:
+            if True: #piggy_boss.start_piggy() and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
@@ -559,7 +559,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
-            if main_secondmain.starting_secondhand() and not l4:
+            if True: #main_secondmain.starting_secondhand() and not l4:
                 winrate+=1
                 l4=True
             start_mainjeu()
@@ -567,7 +567,7 @@ def display_image(image_file, title_text,):
         if level_5_bool and winrate==5:
             print("Level 5 selected")
             # Importer et exécuter le script du niveau 2
-            if main_final.start_final() and not l5:
+            if True: #main_final.start_final() and not l5:
                 main_secondmain.play_video('video/FIN.mp4')
                 pygame.quit()
             else:

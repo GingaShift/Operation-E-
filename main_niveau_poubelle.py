@@ -29,19 +29,19 @@ def start_benwars():
         screen.blit(background,(-854,-324))
         screen.blit(game.gamer.image, game.gamer.rect)
         myfont = pygame.font.SysFont("monospace", 62)
-        score_display = myfont.render(str(game.gamer.score)+'/10', 1, (255, 255, 255))
+        score_display = myfont.render(str(game.gamer.score)+'/20', 1, (255, 255, 255))
         screen.blit(score_display, (0, 0))
 
         if game.gamer.health == 5:
-            screen.blit(pygame.image.load('picture_poubelle/vie5.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie5.png'),(screen.get_width()-264,0))
         elif game.gamer.health == 4:
-            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(screen.get_width()-264,0))
         elif game.gamer.health == 3:
-            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie3.png'),(screen.get_width()-264,0))
         elif game.gamer.health == 2:
-            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie2.png'),(screen.get_width()-264,0))
         elif game.gamer.health == 1:
-            screen.blit(pygame.image.load('picture_poubelle/vie4.png'),(0,0))
+            screen.blit(pygame.image.load('picture_poubelle/vie1.png'),(screen.get_width()-264,0))
 
         game.all_dechet.draw(screen)
         game.all_dechet1.draw(screen)
@@ -62,7 +62,7 @@ def start_benwars():
             game.gamer.moveleft()
 
         pygame.display.flip()
-        if game.gamer.score==10:
+        if game.gamer.score==20:
             running=False
             win = True
         elif game.gamer.health<=0:

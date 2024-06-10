@@ -5,13 +5,13 @@ class Gamer(pygame.sprite.Sprite):
     def __init__(self, game):
         super().__init__()
         self.game = game
-        self.health = 100
-        self.max_health = 100
+        self.health = 75
+        self.max_health = 75
         self.attack = 10
         self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
-        self.image = pygame.image.load('pictures_secondmain/player.png')
-        self.image = pygame.transform.scale(self.image,(128,128))
+        self.image = pygame.image.load('pictures/player.png')
+        self.image = pygame.transform.scale(self.image,(150,150))
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 500
