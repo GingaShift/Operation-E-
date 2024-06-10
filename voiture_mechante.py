@@ -285,6 +285,7 @@ def start_badcars(vol):
     main_menu(vol,screen, background_image, questions, title_font, WHITE, screen_width, screen_height, start_font)
     quiz(screen, background_image, question_font, WHITE, screen_width, LIGHT_GRAY, answer_font, BLACK, HIGHLIGHT_COLOR, RED_BG, RED, GREEN_BG, GREEN, current_question)
     show_score(screen, background_image, message_font, WHITE, screen_width, screen_height)
+    pygame.mixer.quit()
     if score >= 7:
         return True
     else:

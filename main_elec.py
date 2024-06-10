@@ -74,6 +74,7 @@ def starting_eleco(vol):
             running = False
 
     # Afficher le résultat final
+    pygame.mixer.quit()
     if game.gamer.health <= 0:
         return False
     elif game.boss.health <= 0:

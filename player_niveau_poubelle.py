@@ -29,19 +29,19 @@ class Player(pygame.sprite.Sprite):
 
     def moveright(self):
         self.rect.x += self.velocity
-        for monster in self.game.check_collision(self, self.game.all_dechet):
+        for monster in self.game.check_collision(self, self.game.all_dechet,self.type):
             monster.damage(self.degat)
             if not monster.type == self.game.gamer.type:
                 self.dammage(monster.degat)
             else:
                 self.score+=1
-        for monster1 in self.game.check_collision(self, self.game.all_dechet1):
+        for monster1 in self.game.check_collision(self, self.game.all_dechet1,self.type):
             monster1.damage(self.degat)
             if not monster1.type == self.game.gamer.type:
                 self.dammage(monster1.degat)
             else:
                 self.score+=1
-        for monster2 in self.game.check_collision(self, self.game.all_dechet2):
+        for monster2 in self.game.check_collision(self, self.game.all_dechet2,self.type):
             monster2.damage(self.degat)
             if not monster2.type == self.game.gamer.type:
                 self.dammage(monster2.degat)
@@ -50,19 +50,19 @@ class Player(pygame.sprite.Sprite):
 
     def moveleft(self):
         self.rect.x -= self.velocity
-        for monster in self.game.check_collision(self, self.game.all_dechet):
+        for monster in self.game.check_collision(self, self.game.all_dechet,self.type):
             monster.damage(self.degat)
             if not monster.type == self.game.gamer.type:
                 self.dammage(monster.degat)
             else:
                 self.score+=1
-        for monster1 in self.game.check_collision(self, self.game.all_dechet1):
+        for monster1 in self.game.check_collision(self, self.game.all_dechet1,self.type):
             monster1.damage(self.degat)
             if not monster1.type == self.game.gamer.type:
                 self.dammage(monster1.degat)
             else:
                 self.score += 1
-        for monster2 in self.game.check_collision(self, self.game.all_dechet2):
+        for monster2 in self.game.check_collision(self, self.game.all_dechet2,self.type):
             monster2.damage(self.degat)
             if not monster2.type == self.game.gamer.type:
                 self.dammage(monster2.degat)

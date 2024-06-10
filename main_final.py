@@ -105,6 +105,7 @@ def start_final(vol):
                     game.time=game.max_time
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
+    pygame.mixer.quit()
     if player.health>0:
         return True
     else:

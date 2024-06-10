@@ -78,7 +78,7 @@ def starting_secondhand(vol):
 
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
-
+    pygame.mixer.quit()
     if game.gamer.health<=0:
         return False
     elif game.gamer.score >= 250:

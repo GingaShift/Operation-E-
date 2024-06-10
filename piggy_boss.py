@@ -166,6 +166,7 @@ def start_piggy(vol):
                 run = False
                 pygame.QUIT()
         pygame.display.flip()
+    pygame.mixer.quit()
     if quiz.score >=4:
         return True
     else:

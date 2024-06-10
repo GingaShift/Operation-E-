@@ -17,7 +17,7 @@ class Game:
         self.spawn_monster1()
         self.spawn_monster2()
 
-    def check_collision(self, sprite,group):
+    def check_collision(self, sprite,group,type):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def spawn_monster(self):

@@ -87,4 +87,5 @@ def start_benwars(vol):
                     game.gamer.upimage()
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
+    pygame.mixer.quit()
     return win

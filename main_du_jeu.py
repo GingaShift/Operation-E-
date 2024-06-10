@@ -102,6 +102,7 @@ def display_settings_window(screen_game):
     import pygame
     import pygame_menu as pm
     global vol
+    global user_name
 
     pygame.init()
 
@@ -146,6 +147,7 @@ def display_settings_window(screen_game):
 
         def printSettings():
             global vol
+            global user_name
             print("\n\n")
             # getting the data using "get_input_data" method of the Menu class
             settingsData = settings.get_input_data()
@@ -154,6 +156,8 @@ def display_settings_window(screen_game):
                 print(f"{key}\t:\t{settingsData[key]}")
                 if key == 'Mus':
                     vol= settingsData[key]
+                elif key == 'User Name':
+                    user_name = settingsData[key]
 
 
             # Creating the settings menu
@@ -181,7 +185,7 @@ def display_settings_window(screen_game):
 
         # Toggle switches to turn on/off the music and sound
         settings.add.toggle_switch(title="Sounds", default=False, toggleswitch_id="sound")
-        vol = settings.add.range_slider(title="Music", default=0.5, range_values=(0.0, 1.0), increment=0.1, value_format=lambda x: str(int(x)), rangeslider_id="Mus")
+        vol = settings.add.range_slider(title="Music", default=0.5, range_values=(0.0, 1.0), increment=0.1, value_format=lambda x: str(float(round(x,1))), rangeslider_id="Mus")
 
         # Selector to choose between the types of difficulties available
         settings.add.selector(title="Difficulty\t", items=difficulty,
@@ -225,7 +229,7 @@ def display_settings_window(screen_game):
         mainMenu.add.label(title="")
 
         # Exit button that is used to terminate the program
-        mainMenu.add.button(title="Exit", action=pm.events.EXIT,
+        mainMenu.add.button(title="Exit", action=start_mainjeu,
                             font_color=WHITE, background_color=RED)
 
 
@@ -238,8 +242,7 @@ def display_settings_window(screen_game):
 
 
 winrate=0
-def display_image(image_file, title_text,):
-
+def display_image(image_file, title_text):
     import pygame
     global user_name
     global winrate
@@ -247,8 +250,11 @@ def display_image(image_file, title_text,):
     global l1,l2,l3,l4,l5,l2_5
     global vol
     global a
+    info_window_open=False
     vol=round(vol,1)
     pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.quit()
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
     os.environ['SDL_VIDEO_CENTERED'] = '1'
@@ -380,8 +386,9 @@ def display_image(image_file, title_text,):
         window_entry_name_close = True
 
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/son_operationE.mp3")
-    pygame.mixer.music.play(-1)
+    s = pygame.mixer.Sound("musique/son_operationE.mp3")
+    s.set_volume(vol)
+    s.play(-1)
 
     button_hover_play = False
     button_hover_quit = False
@@ -626,11 +633,13 @@ def display_image(image_file, title_text,):
             # Ajout DE
             # des la fermeture de la fenetre permettant à user d'entrer son nom:
             if window_entry_name_close == True and info_window_open == False:
-
+                nom_utilisateur=''
                 if len(user_name) == 0:
-                    nom_utilisateur = "Nom bidon"
+                    nom_utilisateur = "User" + str(random.randint(45085,95432))
                 else:
-                    nom_utilisateur = user_name[0] + user_name[1] + user_name[2] + user_name[3]
+                    for polenta in range(0, min(3,len(user_name))):
+                        nom_utilisateur+= user_name[polenta]
+
                 texte_complet = "Operation E" + " - User = " + nom_utilisateur
                 font = pygame.font.SysFont("Rockwell", 150)
                 text_surface = font.render(texte_complet, True, (192, 192, 192))
