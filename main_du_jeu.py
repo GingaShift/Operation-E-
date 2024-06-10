@@ -19,6 +19,7 @@ l3=False
 l4=False
 l5=False
 vol=0.5
+a='e'
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -235,6 +236,7 @@ def display_settings_window(screen_game):
     if __name__ == "__main__":
         main()
 
+
 winrate=0
 def display_image(image_file, title_text,):
 
@@ -244,6 +246,7 @@ def display_image(image_file, title_text,):
     global text_surface
     global l1,l2,l3,l4,l5,l2_5
     global vol
+    global a
     vol=round(vol,1)
     pygame.init()
     screen_game = pygame.display.set_mode((1200, 800))
@@ -467,7 +470,8 @@ def display_image(image_file, title_text,):
                     pygame.mixer.Sound("musique/son_play.mp3").play()
                     reset_window_content(screen_game)
                     image = pygame.image.load("earth bad mood.png").convert()
-                    screen_game.blit(image, (0,0))
+                    a='e'
+                    screen_game.blit(image, (240,40))
                     pygame.display.flip()
                     game_playing = True
                     play_font_rect.center = (-100, -100)
@@ -580,8 +584,8 @@ def display_image(image_file, title_text,):
                 pygame.quit()
             else:
                 start_mainjeu()
-
-        screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
+        if a=='g':
+            screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
         if not game_playing :
             play_font_rect.center = (600, 400)
             quit_font_rect.center = (600, 530)
@@ -602,6 +606,7 @@ def display_image(image_file, title_text,):
             else:
                 screen_game.blit(play_font, play_font_rect)  # Bouton normal
             image=pygame.image.load('galaxy.jpg')
+            a='g'
 
             # Dessiner le bouton "Quit"
             if button_hover_quit:
