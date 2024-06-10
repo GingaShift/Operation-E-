@@ -222,11 +222,12 @@ def show_score(screen, background_image, message_font, WHITE, screen_width, scre
         pygame.display.flip()
 
 # Fonction pour afficher le menu principal
-def main_menu(screen, background_image, questions, title_font, WHITE, screen_width, screen_height, start_font):
+def main_menu(vol,screen, background_image, questions, title_font, WHITE, screen_width, screen_height, start_font):
     running = True
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/niveau_quiztransport.mp3")
-    pygame.mixer.music.play(-1)
+    s = pygame.mixer.Sound("musique/niveau_quiztransport.mp3")
+    s.set_volume(vol)
+    s.play(-1)
     while running:
         screen.blit(background_image, (0, 0))
         draw_text('Quiz Environnemental', title_font, WHITE, screen, screen_width // 2, screen_height // 2 - 150, max_width=screen_width - 100)  # Placé plus haut
@@ -241,7 +242,7 @@ def main_menu(screen, background_image, questions, title_font, WHITE, screen_wid
 
         pygame.display.flip()
 
-def start_badcars():
+def start_badcars(vol):
     global questions
     global current_question
     play_video("video/voiture_mechante_video.mp4")
@@ -281,7 +282,7 @@ def start_badcars():
     start_font = pygame.font.SysFont(font_name, start_font_size, bold=True)
 
     # Boucle principale
-    main_menu(screen, background_image, questions, title_font, WHITE, screen_width, screen_height, start_font)
+    main_menu(vol,screen, background_image, questions, title_font, WHITE, screen_width, screen_height, start_font)
     quiz(screen, background_image, question_font, WHITE, screen_width, LIGHT_GRAY, answer_font, BLACK, HIGHLIGHT_COLOR, RED_BG, RED, GREEN_BG, GREEN, current_question)
     show_score(screen, background_image, message_font, WHITE, screen_width, screen_height)
     if score >= 7:

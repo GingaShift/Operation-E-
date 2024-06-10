@@ -9,7 +9,7 @@ def play_video(video_path):
         print(f"Error playing video {video_path}: {e}")
 pygame.init()
 
-def start_benwars():
+def start_benwars(vol):
     #generer la fenetre de notre jeu
     play_video("video/video_camion_poubelle.mp4")
     pygame.display.set_caption('Ordure')
@@ -22,8 +22,9 @@ def start_benwars():
 
     running = True
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/niveau_poubel.mp3")
-    pygame.mixer.music.play(-1)
+    s = pygame.mixer.Sound("musique/niveau_poubel.mp3")
+    s.set_volume(vol)
+    s.play(-1)
     while running:
 
         screen.blit(background,(-854,-324))

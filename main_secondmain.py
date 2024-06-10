@@ -8,7 +8,7 @@ def play_video(video_path):
         clip.preview()
     except Exception as e:
         print(f"Error playing video {video_path}: {e}")
-def starting_secondhand():
+def starting_secondhand(vol):
     play_video("video/video_secondhand.mp4")
     pygame.display.set_caption("Seconde main")
     screen = pygame.display.set_mode((1080,720))
@@ -20,8 +20,9 @@ def starting_secondhand():
     running=True
 
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/niveau_secondemain.mp3")
-    pygame.mixer.music.play(-1)
+    s = pygame.mixer.Sound("musique/niveau_secondemain.mp3")
+    s.set_volume(vol)
+    s.play(-1)
 
     while running and game.gamer.health>0 and game.gamer.score < 250:
 

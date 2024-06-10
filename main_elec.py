@@ -11,11 +11,12 @@ def play_video(video_path):
         print(f"Error playing video {video_path}: {e}")
 pygame.init()
 
-def starting_eleco():
+def starting_eleco(vol):
     play_video('video/eleco.mp4')
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/bosseau.mp3")
-    pygame.mixer.music.play(-1)
+    s = pygame.mixer.Sound("musique/niveau_secondemain.mp3")
+    s.set_volume(vol)
+    s.play(-1)
     pygame.display.set_caption("Boss elec")
     screen = pygame.display.set_mode((1080, 720))
 

@@ -11,18 +11,20 @@ def play_video(video_path):
         print(f"Error playing video {video_path}: {e}")
 pygame.init()
 
-def start_final():
+def start_final(vol):
+
 
     play_video('video/final_step.mp4')
     pygame.mixer.init()
-    pygame.mixer.music.load("musique/finalemusique.mp3")
-    pygame.mixer.music.play(-1)
+    s= pygame.mixer.Sound("musique/finalemusique.mp3")
+    s.set_volume(vol)
+    s.play(-1)
     pygame.display.set_caption('Finale task')
     screen = pygame.display.set_mode((1080,810))
     game= game_final.Game()
     player= game.player
     running=True
-    background = pygame.image.load('Asset_final/bg.jpg')
+    background = pygame.image.load('Asset_final/bg.png')
     deb=0
 
     while running and player.health>0:

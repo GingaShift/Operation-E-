@@ -18,6 +18,7 @@ l2_5=False
 l3=False
 l4=False
 l5=False
+vol=0.5
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -99,6 +100,7 @@ def display_info_window(screen_game):
 def display_settings_window(screen_game):
     import pygame
     import pygame_menu as pm
+    global vol
 
     pygame.init()
 
@@ -142,12 +144,16 @@ def display_settings_window(screen_game):
         # This function displays the currently selected options
 
         def printSettings():
+            global vol
             print("\n\n")
             # getting the data using "get_input_data" method of the Menu class
             settingsData = settings.get_input_data()
 
             for key in settingsData.keys():
                 print(f"{key}\t:\t{settingsData[key]}")
+                if key == 'Mus':
+                    vol= settingsData[key]
+
 
             # Creating the settings menu
 
@@ -173,10 +179,8 @@ def display_settings_window(screen_game):
                                          selection_box_height=6)
 
         # Toggle switches to turn on/off the music and sound
-        settings.add.toggle_switch(
-            title="Muisc", default=True, toggleswitch_id="music")
-        settings.add.toggle_switch(
-            title="Sounds", default=False, toggleswitch_id="sound")
+        settings.add.toggle_switch(title="Sounds", default=False, toggleswitch_id="sound")
+        vol = settings.add.range_slider(title="Music", default=0.5, range_values=(0.0, 1.0), increment=0.1, value_format=lambda x: str(int(x)), rangeslider_id="Mus")
 
         # Selector to choose between the types of difficulties available
         settings.add.selector(title="Difficulty\t", items=difficulty,
@@ -223,8 +227,10 @@ def display_settings_window(screen_game):
         mainMenu.add.button(title="Exit", action=pm.events.EXIT,
                             font_color=WHITE, background_color=RED)
 
+
         # Lets us loop the main menu on the screen
         mainMenu.mainloop(screen)
+
 
     if __name__ == "__main__":
         main()
@@ -237,6 +243,8 @@ def display_image(image_file, title_text,):
     global winrate
     global text_surface
     global l1,l2,l3,l4,l5,l2_5
+    global vol
+    vol=round(vol,1)
     pygame.init()
     screen_game = pygame.display.set_mode((1200, 800))
     image = pygame.image.load(image_file).convert_alpha()
@@ -523,7 +531,7 @@ def display_image(image_file, title_text,):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if True: #main_niveau_poubelle.start_benwars() and not l1:
+            if main_niveau_poubelle.start_benwars(vol) and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -532,7 +540,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #voiture_mechante.start_badcars() and not l2:
+            if voiture_mechante.start_badcars(vol) and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -541,7 +549,7 @@ def display_image(image_file, title_text,):
             level_2_5_selected = False
             print("Level 2.5 selected")
             # Importer et exécuter le script du niveau 2.5
-            if True: #main_elec.starting_eleco() and not l2_5:
+            if main_elec.starting_eleco(vol) and not l2_5:
                 winrate += 1
                 l2_5 = True
             start_mainjeu()
@@ -550,7 +558,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #piggy_boss.start_piggy() and not l3:
+            if piggy_boss.start_piggy(vol) and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()
@@ -559,7 +567,7 @@ def display_image(image_file, title_text,):
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #main_secondmain.starting_secondhand() and not l4:
+            if main_secondmain.starting_secondhand(vol) and not l4:
                 winrate+=1
                 l4=True
             start_mainjeu()
@@ -567,7 +575,7 @@ def display_image(image_file, title_text,):
         if level_5_bool and winrate==5:
             print("Level 5 selected")
             # Importer et exécuter le script du niveau 2
-            if True: #main_final.start_final() and not l5:
+            if main_final.start_final(vol) and not l5:
                 main_secondmain.play_video('video/FIN.mp4')
                 pygame.quit()
             else:
