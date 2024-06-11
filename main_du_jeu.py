@@ -1,6 +1,7 @@
 import pygame
 import os
 import sys
+import random
 import moviepy.editor
 import pygame_menu as pm
 import main_secondmain
@@ -88,8 +89,20 @@ def display_info_window(screen_game):
     info_window.blit(text_credit_game, (280, 20))
 
     # Ajoutez du texte à la fenêtre
-    text = font.render("Crée et designé par Gabriel Lallier, Eden Elfassy\n Alina Frederic et Paul-Emile Bertrand\n Toute copie ou violation de la propriété intellectuelle\n fera l'objet de poursuite", True, (255, 255, 255))  # Texte blanc
-    info_window.blit(text, (20, 150))
+    text = font.render("Crée et designé par Gabriel Lallier, Eden Elfassy,", True, (255, 255, 255))  # Texte blanc
+    info_window.blit(text, (70, 150))
+    text2 = font.render(
+        "Alina Frederic et Paul-Emile Bertrand.",
+        True, (255, 255, 255))  # Texte blanc
+    info_window.blit(text2, (120, 180))
+    text3 = font.render(
+        "Toute copie ou violation de la propriété intellectuelle",
+        True, (255, 255, 255))  # Texte blanc
+    info_window.blit(text3, (40, 260))
+    text4 = font.render(
+        "fera l'objet de poursuite!!",
+        True, (255, 255, 255))  # Texte blanc
+    info_window.blit(text4, (180, 290))
 
     # Calculez les coordonnées pour centrer la fenêtre d'information
     window_x = (screen_game.get_width() - info_window.get_width()) // 2
@@ -158,6 +171,9 @@ def display_settings_window(screen_game):
                     vol= settingsData[key]
                 elif key == 'User Name':
                     user_name = settingsData[key]
+        def resetval():
+            settings.reset_value
+            printSettings()
 
 
             # Creating the settings menu
@@ -207,7 +223,7 @@ def display_settings_window(screen_game):
         # 3 different buttons each with a different style and purpose
         settings.add.button(title="Print Settings", action=printSettings,
                             font_color=WHITE, background_color=GREEN)
-        settings.add.button(title="Restore Defaults", action=settings.reset_value,
+        settings.add.button(title="Restore Defaults", action=resetval,
                             font_color=WHITE, background_color=RED)
         settings.add.button(title="Return To Main Menu",
                             action=pm.events.BACK, align=pm.locals.ALIGN_CENTER)
@@ -229,7 +245,7 @@ def display_settings_window(screen_game):
         mainMenu.add.label(title="")
 
         # Exit button that is used to terminate the program
-        mainMenu.add.button(title="Exit", action=start_mainjeu,
+        mainMenu.add.button(title="Exit", action=exit,
                             font_color=WHITE, background_color=RED)
 
 
@@ -242,6 +258,7 @@ def display_settings_window(screen_game):
 
 
 winrate=0
+info_window_open = False
 def display_image(image_file, title_text):
     import pygame
     global user_name
@@ -250,7 +267,8 @@ def display_image(image_file, title_text):
     global l1,l2,l3,l4,l5,l2_5
     global vol
     global a
-    info_window_open=False
+    global info_window_open
+
     vol=round(vol,1)
     pygame.init()
     pygame.mixer.init()
@@ -274,16 +292,16 @@ def display_image(image_file, title_text):
 
     button_info_hover = False
     button_info_clicked = False
-    info_window_open = False
+
     info_window_surface = None
 
     # Ajout DE:
     window_settings_open = False
     window_settings_surface = None
     window_entry_name_close = False
-    text_x = 0
-    text_y = 0
-    scroll_speed = 0
+    text_x = 800
+    text_y = 100
+    scroll_speed = 2
 
     # Fin Ajout DE
 
@@ -631,8 +649,11 @@ def display_image(image_file, title_text):
                 screen_game.blit(text_surface, (text_x, text_y))  # Dessiner le titre animé
 
             # Ajout DE
+
             # des la fermeture de la fenetre permettant à user d'entrer son nom:
+
             if window_entry_name_close == True and info_window_open == False:
+
                 nom_utilisateur=''
                 if len(user_name) == 0:
                     nom_utilisateur = "User" + str(random.randint(45085,95432))
@@ -640,7 +661,7 @@ def display_image(image_file, title_text):
                     for polenta in range(0, min(3,len(user_name))):
                         nom_utilisateur+= user_name[polenta]
 
-                texte_complet = "Operation E" + " - User = " + nom_utilisateur
+                texte_complet = "Operation E" + " - User : " + nom_utilisateur
                 font = pygame.font.SysFont("Rockwell", 150)
                 text_surface = font.render(texte_complet, True, (192, 192, 192))
 
@@ -724,6 +745,11 @@ def display_image(image_file, title_text):
 #    scroll_speed = 2
 def start_mainjeu():
     display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
+def exit():
+    global info_window_open
+    info_window_open = False
+    start_mainjeu()
+
 main_secondmain.play_video("video/video.mp4")
 main_secondmain.play_video("video/Start.mp4")
 start_mainjeu()
