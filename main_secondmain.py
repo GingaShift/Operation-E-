@@ -13,7 +13,7 @@ def starting_secondhand(vol):
     pygame.display.set_caption("Seconde main")
     screen = pygame.display.set_mode((1080,720))
 
-    background = pygame.image.load('pictures_secondmain/bg.jpg')
+    background = pygame.image.load('pictures_secondemain/bg.jpg')
 
     game= games.Game()
 
@@ -54,13 +54,13 @@ def starting_secondhand(vol):
         game.all_vetold.draw(screen)
         game.all_obs.draw(screen)
 
-        if game.pressed.get(pygame.K_RIGHT) and game.gamer.rect.x + game.gamer.rect.width < screen.get_width():
+        if game.pressed.get(pygame.K_RIGHT) and game.gamer.rect.x + 128 < screen.get_width():
             game.gamer.move_right()
         elif game.pressed.get(pygame.K_LEFT) and game.gamer.rect.x > 0:
             game.gamer.move_left()
-        elif game.pressed.get(pygame.K_UP) and game.gamer.rect.y > 0:
+        elif game.pressed.get(pygame.K_UP) and game.gamer.rect.y >= 0:
             game.gamer.move_up()
-        elif game.pressed.get(pygame.K_DOWN) and game.gamer.rect.y + game.gamer.rect.height < screen.get_height():
+        elif game.pressed.get(pygame.K_DOWN) and game.gamer.rect.y <= screen.get_height():
             game.gamer.move_down()
 
         pygame.display.flip()

@@ -10,7 +10,7 @@ class vet_neuf(pygame.sprite.Sprite):
         self.health = 20
         self.max_health = 20
         self.attack = 1
-        self.image = pygame.image.load("pictures_secondmain/vetement_neuf.png")
+        self.image = pygame.image.load("pictures_secondemain/vetement_neuf.png")
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0,1000)
         self.rect.y = random.choice([40,270,540])

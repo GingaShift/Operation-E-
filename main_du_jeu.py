@@ -578,7 +578,7 @@ def display_image(image_file, title_text):
             level_2_5_selected = False
             print("Level 2.5 selected")
             # Importer et exécuter le script du niveau 2.5
-            if main_elec.starting_eleco(vol) and not l2_5:
+            if True: #main_elec.starting_eleco(vol) and not l2_5:
                 winrate += 1
                 l2_5 = True
             start_mainjeu()
@@ -587,7 +587,7 @@ def display_image(image_file, title_text):
             level_2_selected = False
             print("Level 3 selected")
             # Importer et exécuter le script du niveau 2
-            if piggy_boss.start_piggy(vol) and not l3:
+            if True: #piggy_boss.start_piggy(vol) and not l3:
                 winrate+=1
                 l3=True
             start_mainjeu()

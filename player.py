@@ -10,8 +10,8 @@ class Gamer(pygame.sprite.Sprite):
         self.attack = 10
         self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
-        self.image = pygame.image.load('pictures/player.png')
-        self.image = pygame.transform.scale(self.image,(150,150))
+        self.image = pygame.image.load('pictures_secondemain/player.png')
+        self.image = pygame.transform.scale(self.image,(128,128))
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 500
@@ -38,8 +38,11 @@ class Gamer(pygame.sprite.Sprite):
 
     def move_down(self):
         if not (self.game.check_collision(self, self.game.all_vetneufs)) and not (self.game.check_collision(self, self.game.all_vetold)):
-            self.rect.y += self.velocity
+            if not(self.game.check_collision(self,self.game.all_obs)) or not(167<=self.rect.y + 128 <= 169 or 404<= self.rect.y + 128 <= 406):
+                self.rect.y += self.velocity
 
     def move_up(self):
         if not (self.game.check_collision(self, self.game.all_vetneufs)) and not (self.game.check_collision(self, self.game.all_vetold)):
-            self.rect.y -= self.velocity
+            print(not(self.game.check_collision(self, self.game.all_obs)),not(168 <=self.rect.y <= 168 + 39 or 405<=self.rect.y <= 405 + 39), self.rect.y)
+            if not(self.game.check_collision(self, self.game.all_obs)) or not(168 <=self.rect.y<= 168 + 39 or 405<=self.rect.y <= 405 + 39):
+                self.rect.y -= self.velocity

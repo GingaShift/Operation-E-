@@ -119,7 +119,7 @@ def start_piggy(vol):
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
     # Charger et redimensionner la nouvelle image
-    new_image = pygame.image.load("piigycture/rectangle.png").convert_alpha()
+    new_image = pygame.image.load("piggycture/rectangle.png").convert_alpha()
     new_image = pygame.transform.scale(new_image, (1500, 1000))
 
     boss_image = pygame.image.load("piggycture/cochon boss.png").convert_alpha()
