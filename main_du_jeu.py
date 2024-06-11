@@ -21,6 +21,13 @@ l4=False
 l5=False
 vol=0.5
 a='e'
+
+def play_video(video_path):
+    try:
+        clip = moviepy.editor.VideoFileClip(video_path)
+        clip.preview()
+    except Exception as e:
+        print(f"Error playing video {video_path}: {e}")
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -38,7 +45,7 @@ def display_video(video_file, title_text):
     video_size = video.size
     screen = pygame.display.set_mode(video_size)
     video.preview()
-    pygame.quit()  # Ferme la fenêtre pygame lorsque la vidéo est terminée
+
 def adjust_brightness(image, brightness):
     # Crée une copie de l'image
     adjusted_image = image.copy()
@@ -750,8 +757,10 @@ def exit():
     info_window_open = False
     start_mainjeu()
 
-main_secondmain.play_video("video/video.mp4")
-main_secondmain.play_video("video/Start.mp4")
+
+
+play_video("video/video.mp4")
+play_video("video/Start.mp4")
 start_mainjeu()
 
 # Utiliser split pour diviser la chaîne en mots

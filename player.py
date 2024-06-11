@@ -43,6 +43,5 @@ class Gamer(pygame.sprite.Sprite):
 
     def move_up(self):
         if not (self.game.check_collision(self, self.game.all_vetneufs)) and not (self.game.check_collision(self, self.game.all_vetold)):
-            print(not(self.game.check_collision(self, self.game.all_obs)),not(168 <=self.rect.y <= 168 + 39 or 405<=self.rect.y <= 405 + 39), self.rect.y)
             if not(self.game.check_collision(self, self.game.all_obs)) or not(168 <=self.rect.y<= 168 + 39 or 405<=self.rect.y <= 405 + 39):
                 self.rect.y -= self.velocity

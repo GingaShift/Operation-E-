@@ -15,7 +15,7 @@ class etg(pygame.sprite.Sprite):
 
     def forward(self):
         self.rect.x -= self.velocity
-        if self.game.check_collision(self, self.game.all_gamer) and self.game.gamer.rect.x + self.game.gamer.image.get_width() == self.rect.x:
+        if self.game.check_collision(self, self.game.all_gamer) and self.game.gamer.rect.x + 128 == self.rect.x:
             self.game.gamer.rect.x -= 5
             if self.game.gamer.rect.x <=0 - self.game.gamer.image.get_width():
                 self.game.gamer.health -= 20
