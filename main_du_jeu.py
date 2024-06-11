@@ -22,12 +22,6 @@ l5=False
 vol=0.5
 a='e'
 
-def play_video(video_path):
-    try:
-        clip = moviepy.editor.VideoFileClip(video_path)
-        clip.preview()
-    except Exception as e:
-        print(f"Error playing video {video_path}: {e}")
 def reset_window_content(screen_game):
     screen_game.fill((0,0,0))
     pygame.display.flip()
@@ -45,6 +39,7 @@ def display_video(video_file, title_text):
     video_size = video.size
     screen = pygame.display.set_mode(video_size)
     video.preview()
+    pygame.quit()
 
 def adjust_brightness(image, brightness):
     # Crée une copie de l'image
@@ -758,9 +753,9 @@ def exit():
     start_mainjeu()
 
 
+display_video('video/video.mp4','studio')
+display_video('video/Start.mp4','start')
 
-play_video("video/video.mp4")
-play_video("video/Start.mp4")
 start_mainjeu()
 
 # Utiliser split pour diviser la chaîne en mots
