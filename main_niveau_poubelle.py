@@ -49,18 +49,18 @@ def start_benwars(vol):
         game.all_dechet2.draw(screen)
 
         for dechets in game.all_dechet:
-            dechets.falling()
+            dechets.falling(vol)
 
         for dechets1 in game.all_dechet1:
-            dechets1.falling()
+            dechets1.falling(vol)
 
         for dechets2 in game.all_dechet2:
-            dechets2.falling()
+            dechets2.falling(vol)
 
         if game.pressed.get(pygame.K_RIGHT) and game.gamer.rect.x + game.gamer.rect.width<1080:
-            game.gamer.moveright()
+            game.gamer.moveright(vol)
         elif game.pressed.get(pygame.K_LEFT) and game.gamer.rect.x>0:
-            game.gamer.moveleft()
+            game.gamer.moveleft(vol)
 
         pygame.display.flip()
         if game.gamer.score==20:

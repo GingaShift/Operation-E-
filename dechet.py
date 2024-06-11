@@ -21,8 +21,8 @@ class Monster(pygame.sprite.Sprite):
             self.rect.x = random.randint(50,680)
             self.health=self.maxhealth
 
-    def falling(self):
-        if not self.game.check_collision(self,self.game.all_player,self.type):
+    def falling(self,vol):
+        if not self.game.check_collision(self,self.game.all_player,self.type,vol):
             self.rect.y += self.velocity
         else:
             self.damage(self.health)

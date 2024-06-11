@@ -17,7 +17,20 @@ class Game:
         self.spawn_monster1()
         self.spawn_monster2()
 
-    def check_collision(self, sprite,group,type):
+    def check_collision(self, sprite,group,type,vol):
+        if pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask):
+            if type=='vert':
+                s = pygame.mixer.Sound("bruitage/bouteil en verre.mp3")
+                s.set_volume(vol-0.2)
+                s.play()
+            elif type=='jaune':
+                s = pygame.mixer.Sound("bruitage/jaune.mp3")
+                s.set_volume(vol-0.2)
+                s.play()
+            elif type == 'marron':
+                s = pygame.mixer.Sound("bruitage/marron.mp3")
+                s.set_volume(vol-0.2)
+                s.play()
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def spawn_monster(self):
