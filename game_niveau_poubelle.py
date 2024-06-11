@@ -25,7 +25,7 @@ class Game:
                 s.play()
             elif type=='jaune':
                 s = pygame.mixer.Sound("bruitage/jaune.mp3")
-                s.set_volume(vol-0.2)
+                s.set_volume(vol-0.3)
                 s.play()
             elif type == 'marron':
                 s = pygame.mixer.Sound("bruitage/marron.mp3")

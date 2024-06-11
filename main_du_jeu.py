@@ -494,7 +494,7 @@ def display_image(image_file, title_text):
                 if play_font_rect.collidepoint(event.pos):
                     pygame.mixer.Sound("musique/son_play.mp3").play()
                     reset_window_content(screen_game)
-                    image = pygame.image.load("earth bad mood.png").convert()
+                    image = pygame.image.load("menu/earth bad mood.png").convert()
                     a='e'
                     screen_game.blit(image, (240,40))
                     pygame.display.flip()
@@ -560,7 +560,7 @@ def display_image(image_file, title_text):
         if level_1_bool :
             level_2_selected = False
             print("Level 1 selected")
-            if main_niveau_poubelle.start_benwars(vol) and not l1:
+            if True: #main_niveau_poubelle.start_benwars(vol) and not l1:
                 winrate+=1
                 l1=True
             start_mainjeu()
@@ -569,7 +569,7 @@ def display_image(image_file, title_text):
             level_2_selected = False
             print("Level 2 selected")
             # Importer et exécuter le script du niveau 2
-            if voiture_mechante.start_badcars(vol) and not l2:
+            if True: #voiture_mechante.start_badcars(vol) and not l2:
                 winrate+=1
                 l2=True
             start_mainjeu()
@@ -630,7 +630,7 @@ def display_image(image_file, title_text):
                 # Bouton en surbrillance
             else:
                 screen_game.blit(play_font, play_font_rect)  # Bouton normal
-            image=pygame.image.load('galaxy.jpg')
+            image=pygame.image.load('menu/galaxy.jpg')
             a='g'
 
             # Dessiner le bouton "Quit"
@@ -744,7 +744,7 @@ def display_image(image_file, title_text):
 #    text_y = 100
 #    scroll_speed = 2
 def start_mainjeu():
-    display_image("galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
+    display_image("menu/galaxy.jpg", f"Operation - E ; user:" + nom_utilisateur)
 def exit():
     global info_window_open
     info_window_open = False

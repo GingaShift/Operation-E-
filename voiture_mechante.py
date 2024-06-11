@@ -110,8 +110,8 @@ def quiz(screen, background_image, question_font, WHITE, screen_width, LIGHT_GRA
     global score
     running = True
 
-    image1 = pygame.image.load('heros_final.png').convert_alpha()
-    image2 = pygame.image.load('voiture1.png').convert_alpha()
+    image1 = pygame.image.load('bacacture/heros_final.png').convert_alpha()
+    image2 = pygame.image.load('bacacture/voiture1.png').convert_alpha()
 
     image1 = pygame.transform.scale(image1, (300, 300))
     image2 = pygame.transform.scale(image2, (500, 500))
@@ -253,7 +253,7 @@ def start_badcars(vol):
     screen_width, screen_height = screen.get_size()
     pygame.display.set_caption('Quiz de la Voiture Méchante (HAHA !!)')
 
-    background_image = pygame.image.load('background_v_m.jpeg').convert()
+    background_image = pygame.image.load('bacacture/background_v_m.jpeg').convert()
     background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
     # Couleurs

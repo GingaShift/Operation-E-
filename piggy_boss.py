@@ -115,17 +115,17 @@ def start_piggy(vol):
     timer = pygame.time.Clock()
     font = pygame.font.Font('freesansbold.ttf', 24)
     pygame.display.set_caption('Quiz')
-    background_image = pygame.image.load("Untitled.jpeg").convert()
+    background_image = pygame.image.load("piggycture/Untitled.jpeg").convert()
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
     # Charger et redimensionner la nouvelle image
-    new_image = pygame.image.load("rectangle.png").convert_alpha()
+    new_image = pygame.image.load("piigycture/rectangle.png").convert_alpha()
     new_image = pygame.transform.scale(new_image, (1500, 1000))
 
-    boss_image = pygame.image.load("cochon boss.png").convert_alpha()
+    boss_image = pygame.image.load("piggycture/cochon boss.png").convert_alpha()
     boss_image = pygame.transform.scale(boss_image, (420, 420))
 
-    hero_image = pygame.image.load("hero.png").convert_alpha()
+    hero_image = pygame.image.load("piggycture/hero.png").convert_alpha()
     hero_image = pygame.transform.scale(hero_image, (400, 300))
 
     # Agrandir l'image du héros tout en conservant les proportions
