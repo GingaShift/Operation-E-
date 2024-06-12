@@ -24,11 +24,50 @@ def starting_eleco(vol):
 
     game = games_elec.Game()
     game.screen = screen  # Ajouter référence à l'écran dans le jeu
+    eau = 'Boss_elec/r1.png'
+    lum = 'Boss_elec/lum1.png'
 
     running = True
 
     while running:
         screen.blit(background, (0,0))
+
+        if game.boss.health == 10:
+            eau = 'Boss_elec/r1.png'
+            lum = 'Boss_elec/lum2.png'
+        elif game.boss.health == 9:
+            eau = 'Boss_elec/r1.png'
+            lum = 'Boss_elec/lum3.png'
+        elif game.boss.health == 8:
+            eau = 'Boss_elec/r1.png'
+            lum = 'Boss_elec/lum4.png'
+        elif game.boss.health == 7:
+            eau = 'Boss_elec/r1.png'
+            lum = 'Boss_elec/lum3.5.png'
+        elif game.boss.health == 6:
+            eau = 'Boss_elec/r1.png'
+            lum = 'Boss_elec/lum5.png'
+        elif game.boss.health == 5:
+            eau = 'Boss_elec/r2.png'
+            lum = 'Boss_elec/lum5.png'
+        elif game.boss.health == 4:
+            eau = 'Boss_elec/r3.png'
+            lum = 'Boss_elec/lum5.png'
+        elif game.boss.health == 3:
+            eau = 'Boss_elec/r4.png'
+            lum = 'Boss_elec/lum5.png'
+        elif game.boss.health == 2:
+            eau = 'Boss_elec/r4.5.png'
+            lum = 'Boss_elec/lum5.png'
+        elif game.boss.health == 1:
+            eau = 'Boss_elec/r5.png'
+            lum = 'Boss_elec/lum5.png'
+        eaui= pygame.image.load(eau)
+        eaui= pygame.transform.scale(eaui,(128,128))
+        screen.blit(eaui,(432-128,0))
+        lumi= pygame.image.load(lum)
+        lumi= pygame.transform.scale(lumi,(128,128))
+        screen.blit(lumi,(432+1+128,0))
         screen.blit(game.gamer.image, game.gamer.rect)
 
         game.gamer.update_health_bar(screen)
