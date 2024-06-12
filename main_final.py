@@ -25,6 +25,7 @@ def start_final(vol):
     player= game.player
     running=True
     background = pygame.image.load('Asset_final/bg.png')
+    background = pygame.transform.scale(background,(1080,810))
     deb=0
 
     while running and player.health>0:
@@ -106,7 +107,7 @@ def start_final(vol):
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
     pygame.mixer.quit()
-    if player.health>0:
+    if player.health>0 and deb >10:
         return True
     else:
         return False

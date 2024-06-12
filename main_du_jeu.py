@@ -598,7 +598,7 @@ def display_image(image_file, title_text):
             level_2_selected = False
             print("Level 4 selected")
             # Importer et exécuter le script du niveau 2
-            if main_secondmain.starting_secondhand(vol) and not l4:
+            if True: #main_secondmain.starting_secondhand(vol) and not l4:
                 winrate+=1
                 l4=True
             start_mainjeu()
@@ -608,8 +608,6 @@ def display_image(image_file, title_text):
             # Importer et exécuter le script du niveau 2
             if main_final.start_final(vol) and not l5:
                 main_secondmain.play_video('video/FIN.mp4')
-                pygame.quit()
-            else:
                 start_mainjeu()
         if a=='g':
             screen_game.blit(image, (0, 0))  # Dessiner l'image de fond
