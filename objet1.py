@@ -18,7 +18,7 @@ class wrong_obj(pygame.sprite.Sprite):
             if random.randint(1,2) == 2:
                 self.image = pygame.image.load('Asset_final/closer.png')
             else:
-                self.image = pygame.image.load('Asset_final/lumf.png')
+                self.image = pygame.image.load('Asset_final/luf.png')
         elif type=='piggy':
             if random.randint(1,2)==2:
                 self.image = pygame.image.load('Asset_final/meal.png')
