@@ -6,7 +6,7 @@ Membres de l'équipe projet
     Alina Frederic
     Gabriel Lallier
 
-Lien direct vers le dépôt Git de votre projet : 
+Lien direct vers le dépôt Git de votre projet : https://github.com/eden2807/Operation-E-.git
 
 Lien vers le Power Point avec vidéo de présentation : https://www.canva.com/design/DAGHY10hY9U/TjKZaNbNxKlxTC27rhJZ-g/edit?utm_content=DAGHY10hY9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
