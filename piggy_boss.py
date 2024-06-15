@@ -1,15 +1,12 @@
 import pygame
 from moviepy.editor import VideoFileClip
 
-
 def play_video(video_path):
     try:
         clip = VideoFileClip(video_path)
         clip.preview()
     except Exception as e:
         print(f"Error playing video {video_path}: {e}")
-
-pygame.init()
 
 class Button:
     def __init__(self, text, x_pos, y_pos, width, height, enabled,screen,font):
@@ -42,18 +39,30 @@ class Button:
 
 class Quiz:
     def __init__(self):
-        self.questions = ["Le quart des émissions de gaz à effet de serre en France provient de nos assiettes?",
-                          "Quel aliment est en tête du classement des aliments les plus polluants en\ngaz à effet de serre?",
-                          "Quel aliment ne favorise pas la réduction de son empreinte carbone ?",
-                          "Les aliments suivants : \"le tabac, l’huile de palme, le sucre de canne, le cacao, le café\"\ncontribuent-ils à la déforestation?",
-                          "À quoi ne contribuent pas les produits suremballés?"]
+        self.questions = [
+            "Le quart des émissions de gaz à effet de serre en France provient de nos assiettes?",
+            "Quel aliment est en tête du classement des aliments les plus polluants en\ngaz à effet de serre?",
+            "Quel aliment ne favorise pas la réduction de son empreinte carbone ?",
+            "Les aliments suivants : \"le tabac, l’huile de palme, le sucre de canne, le cacao, le café\"\ncontribuent-ils à la déforestation?",
+            "À quoi ne contribuent pas les produits suremballés?",
+            "Planifier les repas et utiliser les restes est une excellente façon de réduire le gaspillage\nalimentaire en utilisant les aliments déjà disponibles.",
+            "Utiliser une boîte à lunch réutilisable permet de réduire l'utilisation de plastique jetable?",
+            "La surpêche ne peut pas entraîner une diminution des populations de poissons,\nperturbant ainsi l'équilibre des écosystèmes marins",
+            "Quel est l'impact des arbres sur le réchauffement climatique ?",
+        ]
         self.answers = [
             ["Vrai", "Faux"],
             ["La viande", "La tomate", "Le champignon", "Les graines"],
-            ["Les algues", "Fruits locaux", "Légumes locaux", "Produits laitiers"],  # Ajouter une virgule ici
+            ["Les algues", "Fruits locaux", "Légumes locaux", "Produits laitiers"],
             ["Vrai", "Faux"],
-            ["Pollution plastique","Au bien de la planète","Destruction des espèces","Favorise l'acte d'acheter"]
+            ["Pollution plastique", "Au bien de la planète", "Destruction des espèces", "Favorise l'acte d'acheter"],
+            ["Vrai", "Faux"],
+            ["Vrai", "Faux"],
+            ["Vrai", "Faux"],
+            ["Faible", "Élevé","Nul","Modéré"],
+
         ]
+        self.correct_answers = [0, 0, 3, 0, 1, 0, 0, 1,1]
         self.explanations = [
             "Les émissions de gaz à effet de serre de notre alimentation représentent environ\n25% des émissions totales en France.",
             "La viande, en particulier le bœuf, est l'un des aliments les plus polluants en termes\nde gaz à effet de serre.",
@@ -66,15 +75,13 @@ class Quiz:
             "Les arbres absorbent le dioxyde de carbone de l'atmosphère lors de la photosynthèse,\nce qui aide à réguler le climat en réduisant la quantité de gaz à effet de serre dans l'air.\nAinsi, leur abattage contribue à accélérer le réchauffement climatique."
 
         ]
-
-        self.correct_answers = [0, 0, 3,0,1]
         self.current_question = 0
         self.score = 0
         self.answered = False
         self.feedback_time = 0
         self.feedback_text = ""
 
-    def display_question(self,WIDTH,HEIGHT,screen,new_image,final_score_position,font):
+    def display_question(self,WIDTH,new_image,HEIGHT,font,screen,final_score_position):
         if self.current_question < len(self.questions):
             if not self.answered:
                 text_x = (WIDTH - new_image.get_width()) // 2 + 200
@@ -94,7 +101,8 @@ class Quiz:
                 for i, answer in enumerate(self.answers[self.current_question]):
                     col = i % 2
                     row = i // 2
-                    button = Button(answer, button_x + col * horizontal_margin, button_y + row * vertical_margin, 200, 60, True,screen,font)
+                    button = Button(answer, button_x + col * horizontal_margin, button_y + row * vertical_margin,
+                                    200, 60, True, screen, font)
                     if button.check_click():
                         self.answered = True
                         if i == self.correct_answers[self.current_question]:
@@ -103,13 +111,11 @@ class Quiz:
                         else:
                             self.feedback_text = "Perdu!"
                         self.feedback_time = pygame.time.get_ticks()
-            return True
         else:
             score_text = font.render("Score final : " + str(self.score), True, 'black')
             screen.blit(score_text, final_score_position)
-            return False
 
-    def display_explanation(self,screen,font):
+    def display_explanation(self,explanation_text_position,font,screen):
         if self.answered:
             explanation_text = self.explanations[self.current_question].split('\n')
             y_position = explanation_text_position[1]
@@ -120,18 +126,15 @@ class Quiz:
 
     def next_question(self):
         if self.answered:
-            if pygame.time.get_ticks() - self.feedback_time >= 1200:
+            if pygame.time.get_ticks() - self.feedback_time >= 5200:
                 self.current_question += 1
                 self.answered = False
                 self.feedback_text = ""
+
+quiz = Quiz()
+
 def start_piggy(vol):
-    global final_score_position
-    global explanation_text_position
-    play_video("video/boss.mp4")
-    pygame.mixer.init()
-    s = pygame.mixer.Sound("musique/niveau_piggy.mp3")
-    s.set_volume(vol)
-    s.play(-1)
+    pygame.init()
     WIDTH = 1920
     HEIGHT = 1080
     screen = pygame.display.set_mode([WIDTH, HEIGHT])
@@ -162,14 +165,15 @@ def start_piggy(vol):
     feedback_text_position = ((WIDTH - 350) // 2 + 100, 680)
     final_score_position = ((WIDTH - 350) // 2 + 40, 780)
     explanation_text_position = ((WIDTH - 1150) // 2, (HEIGHT + 400) // 2)
-
-    quiz = Quiz()
-
     # Jouer la vidéo avant de commencer le jeu
-
+    play_video("video/boss.mp4")
+    pygame.mixer.init()
+    s = pygame.mixer.Sound("musique/niveau_piggy.mp3")
+    s.set_volume(vol)
+    s.play(-1)
 
     run = True
-    while run and quiz.current_question<5:
+    while run and quiz.current_question <9:
         screen.fill('white')
         timer.tick(fps)
         screen.blit(background_image, (0, 0))
@@ -179,8 +183,8 @@ def start_piggy(vol):
                     ((WIDTH - boss_image.get_width()) // 2 + 320, (HEIGHT - boss_image.get_height()) // 2 - 75))
         screen.blit(hero_image,
                     ((WIDTH - boss_image.get_width()) // 2 - 350, (HEIGHT - hero_image.get_height()) // 2 - 90))
-        quiz.display_question(WIDTH,HEIGHT,screen,new_image,final_score_position,font)
-        quiz.display_explanation(screen,font)
+        quiz.display_question(WIDTH,new_image,HEIGHT,font,screen,final_score_position)
+        quiz.display_explanation(explanation_text_position,font,screen)
 
         if quiz.feedback_text:
             feedback_display_time = pygame.time.get_ticks() - quiz.feedback_time
@@ -195,10 +199,8 @@ def start_piggy(vol):
                 run = False
 
         pygame.display.flip()
-
     pygame.mixer.quit()
     if quiz.score >=4:
-        return True
+       return True
     else:
         return False
-
