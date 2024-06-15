@@ -54,6 +54,19 @@ class Quiz:
             ["Vrai", "Faux"],
             ["Pollution plastique","Au bien de la planète","Destruction des espèces","Favorise l'acte d'acheter"]
         ]
+        self.explanations = [
+            "Les émissions de gaz à effet de serre de notre alimentation représentent environ\n25% des émissions totales en France.",
+            "La viande, en particulier le bœuf, est l'un des aliments les plus polluants en termes\nde gaz à effet de serre.",
+            "Les produits laitiers ont une empreinte carbone plus élevée comparée aux\nfruits et légumes locaux.",
+            "Le tabac, l’huile de palme, le sucre de canne, le cacao et le café contribuent à\nla déforestation.",
+            "Les produits suremballés ne contribuent pas au bien de la planète.",
+            "Planifier les repas et utiliser les restes est une excellente façon de réduire le\ngaspillage alimentaire en utilisant les aliments déjà disponibles.",
+            "Utiliser une boîte à lunch réutilisable permet de réduire l'utilisation de plastique\njetable, ce qui est meilleur pour l'environnement.",
+            "La surpêche peut entraîner une diminution des populations de poissons,\nperturbant ainsi l'équilibre des écosystèmes marins",
+            "Les arbres absorbent le dioxyde de carbone de l'atmosphère lors de la photosynthèse,\nce qui aide à réguler le climat en réduisant la quantité de gaz à effet de serre dans l'air.\nAinsi, leur abattage contribue à accélérer le réchauffement climatique."
+
+        ]
+
         self.correct_answers = [0, 0, 3,0,1]
         self.current_question = 0
         self.score = 0
@@ -96,6 +109,15 @@ class Quiz:
             screen.blit(score_text, final_score_position)
             return False
 
+    def display_explanation(self,screen,font):
+        if self.answered:
+            explanation_text = self.explanations[self.current_question].split('\n')
+            y_position = explanation_text_position[1]
+            for line in explanation_text:
+                line_text = font.render(line, True, 'black')
+                screen.blit(line_text, (explanation_text_position[0], y_position))
+                y_position += 30
+
     def next_question(self):
         if self.answered:
             if pygame.time.get_ticks() - self.feedback_time >= 1200:
@@ -103,6 +125,8 @@ class Quiz:
                 self.answered = False
                 self.feedback_text = ""
 def start_piggy(vol):
+    global final_score_position
+    global explanation_text_position
     play_video("video/boss.mp4")
     pygame.mixer.init()
     s = pygame.mixer.Sound("musique/niveau_piggy.mp3")
@@ -135,8 +159,9 @@ def start_piggy(vol):
     hero_image = pygame.transform.scale(hero_image, (hero_width, hero_height))
 
     # Positions des textes
-    feedback_text_position = ((WIDTH - 350) // 2 + 100, 780)
+    feedback_text_position = ((WIDTH - 350) // 2 + 100, 680)
     final_score_position = ((WIDTH - 350) // 2 + 40, 780)
+    explanation_text_position = ((WIDTH - 1150) // 2, (HEIGHT + 400) // 2)
 
     quiz = Quiz()
 
@@ -144,16 +169,19 @@ def start_piggy(vol):
 
 
     run = True
-    while run:
+    while run and quiz.current_question<5:
         screen.fill('white')
         timer.tick(fps)
         screen.blit(background_image, (0, 0))
-        screen.blit(new_image, ((WIDTH - new_image.get_width()) // 2 - 30, (HEIGHT - new_image.get_height()) // 2 + 400))
-        screen.blit(boss_image, ((WIDTH - boss_image.get_width()) // 2 + 320, (HEIGHT - boss_image.get_height()) // 2 - 75))
-        screen.blit(hero_image, ((WIDTH - boss_image.get_width()) // 2 - 350, (HEIGHT - hero_image.get_height()) // 2 - 90))
-        fin = quiz.display_question(WIDTH,HEIGHT,screen,new_image,final_score_position,font)
-        if not fin:
-            run=False
+        screen.blit(new_image,
+                    ((WIDTH - new_image.get_width()) // 2 - 30, (HEIGHT - new_image.get_height()) // 2 + 400))
+        screen.blit(boss_image,
+                    ((WIDTH - boss_image.get_width()) // 2 + 320, (HEIGHT - boss_image.get_height()) // 2 - 75))
+        screen.blit(hero_image,
+                    ((WIDTH - boss_image.get_width()) // 2 - 350, (HEIGHT - hero_image.get_height()) // 2 - 90))
+        quiz.display_question(WIDTH,HEIGHT,screen,new_image,final_score_position,font)
+        quiz.display_explanation(screen,font)
+
         if quiz.feedback_text:
             feedback_display_time = pygame.time.get_ticks() - quiz.feedback_time
             if feedback_display_time < 1000:
@@ -161,11 +189,13 @@ def start_piggy(vol):
                 screen.blit(feedback_surface, feedback_text_position)
             else:
                 quiz.next_question()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-                pygame.QUIT()
+
         pygame.display.flip()
+
     pygame.mixer.quit()
     if quiz.score >=4:
         return True
