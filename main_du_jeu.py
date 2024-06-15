@@ -580,7 +580,7 @@ def display_image(image_file, title_text):
             level_2_5_selected = False
             print("Level 2.5 selected")
             # Importer et exécuter le script du niveau 2.5
-            if True: #main_elec.starting_eleco(vol) and not l2_5:
+            if main_elec.starting_eleco(vol) and not l2_5:
                 winrate += 1
                 l2_5 = True
             start_mainjeu()
