@@ -19,7 +19,7 @@ l2_5=False
 l3=False
 l4=False
 l5=False
-vol=0.5
+vol=0.5     
 a='e'
 
 def reset_window_content(screen_game):
