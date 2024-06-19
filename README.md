@@ -10,7 +10,13 @@ Lien direct vers le dépôt Git de votre projet : https://github.com/eden2807/Op
 
 Lien vers le Power Point avec vidéo de présentation : https://www.canva.com/design/DAGHY10hY9U/TjKZaNbNxKlxTC27rhJZ-g/edit?utm_content=DAGHY10hY9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-
+# ATTENTION : Pour que le programme soit fonctionnel, il vous faut installer les modules python suivant : 
+# import pygame
+# import os
+# import sys
+# import random
+# import moviepy.editor
+# import pygame_menu as pm
 
 Projet Earth Tech L1 PP
 
