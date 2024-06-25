@@ -10,6 +10,9 @@ Lien direct vers le dépôt Git de votre projet : https://github.com/eden2807/Op
 
 Lien vers le Power Point avec vidéo de présentation : https://www.canva.com/design/DAGHY10hY9U/TjKZaNbNxKlxTC27rhJZ-g/edit?utm_content=DAGHY10hY9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+<img width="738" alt="Capture d’écran 2024-06-25 à 22 37 37" src="https://github.com/eden2807/Operation-E-/assets/151009399/2bee9d70-9948-4dd6-ae06-91be0a7292a7">
+
+
 # ATTENTION : Pour que le programme soit fonctionnel, il vous faut installer les modules python suivant : 
 # import pygame
 # import os
