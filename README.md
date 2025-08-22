@@ -1,44 +1,102 @@
-# Operation-E-
-Membres de l'équipe projet
+<h1 align="center">🌍 Operation-E</h1>
+<p align="center"><i>An educational game built with Python & pygame — raising ecological awareness through interactive gameplay</i></p>
 
-    Eden Elfassy
-    Paul-Emile Bertrand
-    Alina Frederic
-    Gabriel Lallier
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Engine-pygame-00cc99?logo=pygame&logoColor=white" />
+  <img src="https://img.shields.io/badge/Video-moviepy-ff4757" />
+  <img src="https://img.shields.io/badge/Category-Serious%20Game-2ecc71" />
+</p>
 
-Lien direct vers le dépôt Git de votre projet : https://github.com/eden2807/Operation-E-.git
+---
 
-Lien vers le Power Point avec vidéo de présentation : https://www.canva.com/design/DAGHY10hY9U/TjKZaNbNxKlxTC27rhJZ-g/edit?utm_content=DAGHY10hY9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+## 🌟 Overview
 
-<img width="738" alt="Capture d’écran 2024-06-25 à 22 37 37" src="https://github.com/eden2807/Operation-E-/assets/151009399/2bee9d70-9948-4dd6-ae06-91be0a7292a7">
+**Operation-E** is one of our most ambitious **research & coding projects**.  
+It is a **serious game** designed to teach children ecological habits in a fun, interactive, and immersive way.  
 
-![Poster_Operation_E](https://github.com/eden2807/Operation-E-/assets/151009399/3d083cda-73d2-466f-be19-1e198dbc635c)
+🎯 The goal:  
+- Make **ecology accessible** to children  
+- Translate complex issues into **playful missions**  
+- Combine **science, pedagogy, and computer science**  
+
+This project combines **game development (pygame)**, **multimedia integration (moviepy, custom music & assets)**, and **research on pedagogy & education**.
+
+Operation-E was born from a **research-driven question**:  
+👉 *How can we effectively teach ecological habits to children in a way that is simple, fun, and memorable?*  
+
+We observed three key challenges:  
+- 🚸 **Children are not sufficiently sensitized to ecology** in traditional education.  
+- 📖 Explanations are often **too complex or abstract** for young audiences.  
+- 🎮 Few engaging games exist that truly connect **scientific knowledge** with **child-friendly gameplay**.  
+
+Our approach combined **pedagogical research** with **computer science & game design**.  
+- We analyzed how **habits like recycling, saving water, and energy efficiency** are usually taught.  
+- We adapted these into **mini-games and missions** with immediate feedback and rewards.  
+- We tested different **narratives, visuals, and mechanics** to ensure the lessons stick.  
+---
+
+## 🎮 Gameplay & Features
+
+- 🕹️ **Interactive Menu** — intuitive navigation for young players  
+- 🎨 **Custom Graphics** — original assets, backgrounds, life bars, icons  
+- 🎵 **Immersive Sound Design** — music & effects with `pygame.mixer`  
+- 🎬 **Video Integration** — cutscenes and intros with `moviepy`  
+- ♻️ **Mini-games & Missions** — recycling, water, transport, pollution, energy saving  
+- ❤️ **Health & Feedback System** — life bar, visual states, immediate feedback on actions  
+- 🔄 **Randomized Events** — spawning eco-challenges dynamically for replayability  
+
+---
+
+## 🖼️ Screenshots
+
+<p align="center">
+  <img width="800" height="555" alt="image" src="https://github.com/user-attachments/assets/fb05d42c-e72b-4382-a9f1-0faddbdb9169" /><br>
+  <em>🔹 Interactive main menu of Operation-E</em>
+</p>
+
+<p align="center">
+  <img width="800" height="536" alt="image" src="https://github.com/user-attachments/assets/f86d6767-498b-4c84-88d8-ce068f6c2f35" /><br>
+  <em>🔹 Example mini-game: collect the right eco-objects</em>
+</p>
+
+<p align="center">
+  <img width="800" height="418" alt="image" src="https://github.com/user-attachments/assets/a0ef1a7b-0174-49a8-a402-885c8be4e654" /><br>
+  <em>🔹 Academic Research Poster</em>
+</p>
+
+---
+
+## 📂 Project Structure
+
+Operation-E/
+├─ assets/ # Images, sprites, sounds, videos<br>
+├─ src/ # Game source code (Python)<br>
+│ ├─ main.py # Entry point<br>
+│ ├─ game_final.py # Core game loop & mechanics<br>
+│ ├─ ...<br>
+├─ images/ # Screenshots for README<br>
+├─ docs/ # Research report (Earth Tech Project)<br>
+├─ requirements.txt<br>
+└─ README.md<br>
 
 
+---
 
-# ATTENTION : Pour que le programme soit fonctionnel, il vous faut installer les modules python suivant : 
-# import pygame
-# import os
-# import sys
-# import random
-# import moviepy.editor
-# import pygame_menu as pm
+## 🧰 Tech Stack
 
-Projet Earth Tech L1 PP
+- **Python 3.10+**
+- **pygame** — graphics, events, collisions, animations  
+- **moviepy** — video cutscenes and intros  
+- **pygame.mixer** — music & sound integration  
+- **random** — randomized events & spawning system  
 
-Fonctionnalités principales de votre application
+---
 
-    Fenêtre de saisie pour le nom d'utilisateur.
-    Le jeu possède une vidéo de présentation au premier démarrage, puis le menu est accessible avec les boutons Play, Quit, Paramètres et Informations.
-    Si l'on appuie sur Play, il sera possible de jouer à un seul niveau au premier lancement. Si l'on réussit ce niveau, il sera possible de jouer au prochain uniquement (ou recommencer le précédent) et ainsi de suite.
-    Chaque niveau éduque sur des thèmes précis. Il y a 2 niveaux de type Quiz et 4 niveaux de type aventure.
-    Une fois tous les niveaux terminés, une vidéo est diffusée.
+## 📦 Installation
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GingaShift/Operation-E.git
+   cd Operation-E
 
-Instructions d'exécution de votre code
-
-    Lancer PyCharm.
-    Dans la barre de menu, cliquer sur le menu "VCS" puis cliquer sur l'entrée de menu "Get from Version Control".
-    Cliquer sur l'onglet "Repository URL" puis entrer l'URL du projet dans la zone nommée "URL".
-    Préciser le dossier qui hébergera le projet puis cliquer sur "Clone".
-    Lancer le programme en cliquant sur "Play" ou en utilisant le raccourci-clavier "Maj + F10".
